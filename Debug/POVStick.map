@@ -286,7 +286,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1ac8
+.text           0x00000000     0x1abc
  *(.vectors)
  .vectors       0x00000000       0x8c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.1.130/gcc/dev/atmega128/avr51/crtatmega128.o
                 0x00000000                __vector_default
@@ -444,45 +444,45 @@ END GROUP
  .text.read_string
                 0x00001578       0x36 main.o
                 0x00001578                read_string
- .text.main     0x000015ae      0x1bc main.o
+ .text.main     0x000015ae      0x1b0 main.o
                 0x000015ae                main
  .text.spi_write_byte
-                0x0000176a        0x8 mmc.o
+                0x0000175e        0x8 mmc.o
  .text.spi_read_byte
-                0x00001772        0xc mmc.o
+                0x00001766        0xc mmc.o
  .text.mmc_disable
-                0x0000177e        0x6 mmc.o
+                0x00001772        0x6 mmc.o
  .text.mmc_send_cmd
-                0x00001784       0x6c mmc.o
+                0x00001778       0x6c mmc.o
  .text.mmc_init
-                0x000017f0      0x15a mmc.o
-                0x000017f0                mmc_init
+                0x000017e4      0x15a mmc.o
+                0x000017e4                mmc_init
  .text.mmc_write_sector
-                0x0000194a       0x80 mmc.o
-                0x0000194a                mmc_write_sector
+                0x0000193e       0x80 mmc.o
+                0x0000193e                mmc_write_sector
  .text.mmc_read_sector
-                0x000019ca       0x62 mmc.o
-                0x000019ca                mmc_read_sector
+                0x000019be       0x62 mmc.o
+                0x000019be                mmc_read_sector
  .text.libgcc.div
-                0x00001a2c       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
-                0x00001a2c                __udivmodsi4
+                0x00001a20       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
+                0x00001a20                __udivmodsi4
  .text.libgcc.mul
-                0x00001a70       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_muluhisi3.o)
-                0x00001a70                __muluhisi3
+                0x00001a64       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_muluhisi3.o)
+                0x00001a64                __muluhisi3
  .text.libgcc.mul
-                0x00001a84       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_umulhisi3.o)
-                0x00001a84                __umulhisi3
+                0x00001a78       0x1e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_umulhisi3.o)
+                0x00001a78                __umulhisi3
  .text.avr-libc
-                0x00001aa2       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(toupper.o)
-                0x00001aa2                toupper
+                0x00001a96       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(toupper.o)
+                0x00001a96                toupper
  .text.avr-libc
-                0x00001ab2       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strcmp.o)
-                0x00001ab2                strcmp
-                0x00001ac4                . = ALIGN (0x2)
+                0x00001aa6       0x12 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr51\libc.a(strcmp.o)
+                0x00001aa6                strcmp
+                0x00001ab8                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001ac4        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
-                0x00001ac4                _exit
-                0x00001ac4                exit
+ .fini9         0x00001ab8        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+                0x00001ab8                _exit
+                0x00001ab8                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -501,11 +501,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001ac4        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+ .fini0         0x00001ab8        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001ac8                _etext = .
+                0x00001abc                _etext = .
 
-.data           0x00800100       0x16 load address 0x00001ac8
+.data           0x00800100       0x16 load address 0x00001abc
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -541,8 +541,8 @@ END GROUP
  COMMON         0x00800355      0x360 main.o
                 0x00800355                data_array
                 0x008006b5                PROVIDE (__bss_end, .)
-                0x00001ac8                __data_load_start = LOADADDR (.data)
-                0x00001ade                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00001abc                __data_load_start = LOADADDR (.data)
+                0x00001ad2                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x008006b5        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -712,5 +712,5 @@ END GROUP
 
 .debug_macro
  *(.debug_macro)
-OUTPUT(POCStick.elf elf32-avr)
+OUTPUT(POVStick.elf elf32-avr)
 LOAD linker stubs

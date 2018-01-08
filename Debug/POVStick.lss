@@ -1,33 +1,33 @@
 
-POCStick.elf:     file format elf32-avr
+POVStick.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000016  00800100  00001ac8  00001b5c  2**0
+  0 .data         00000016  00800100  00001abc  00001b50  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00001ac8  00000000  00000000  00000094  2**1
+  1 .text         00001abc  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          0000059f  00800116  00800116  00001b72  2**0
+  2 .bss          0000059f  00800116  00800116  00001b66  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00001b72  2**0
+  3 .comment      00000030  00000000  00000000  00001b66  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001ba4  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001b98  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000001c0  00000000  00000000  00001be0  2**3
+  5 .debug_aranges 000001c0  00000000  00000000  00001bd8  2**3
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00002cae  00000000  00000000  00001da0  2**0
+  6 .debug_info   00002cae  00000000  00000000  00001d98  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 000010fa  00000000  00000000  00004a4e  2**0
+  7 .debug_abbrev 000010fa  00000000  00000000  00004a46  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001d33  00000000  00000000  00005b48  2**0
+  8 .debug_line   00001d33  00000000  00000000  00005b40  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000848  00000000  00000000  0000787c  2**2
+  9 .debug_frame  00000848  00000000  00000000  00007874  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000096d  00000000  00000000  000080c4  2**0
+ 10 .debug_str    0000096d  00000000  00000000  000080bc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00002b77  00000000  00000000  00008a31  2**0
+ 11 .debug_loc    00002b77  00000000  00000000  00008a29  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000190  00000000  00000000  0000b5a8  2**0
+ 12 .debug_ranges 00000190  00000000  00000000  0000b5a0  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -116,7 +116,7 @@ Disassembly of section .text:
       98:	11 e0       	ldi	r17, 0x01	; 1
       9a:	a0 e0       	ldi	r26, 0x00	; 0
       9c:	b1 e0       	ldi	r27, 0x01	; 1
-      9e:	e8 ec       	ldi	r30, 0xC8	; 200
+      9e:	ec eb       	ldi	r30, 0xBC	; 188
       a0:	fa e1       	ldi	r31, 0x1A	; 26
       a2:	00 e0       	ldi	r16, 0x00	; 0
       a4:	0b bf       	out	0x3b, r16	; 59
@@ -141,7 +141,7 @@ Disassembly of section .text:
       be:	b2 07       	cpc	r27, r18
       c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
       c2:	0e 94 d7 0a 	call	0x15ae	; 0x15ae <main>
-      c6:	0c 94 62 0d 	jmp	0x1ac4	; 0x1ac4 <_exit>
+      c6:	0c 94 5c 0d 	jmp	0x1ab8	; 0x1ab8 <_exit>
 
 000000ca <__bad_interrupt>:
       ca:	9a cf       	rjmp	.-204    	; 0x0 <__vectors>
@@ -623,7 +623,7 @@ ret
      300:	10 92 1e 01 	sts	0x011E, r1	; 0x80011e <fat+0x4>
      304:	42 e3       	ldi	r20, 0x32	; 50
      306:	51 e0       	ldi	r21, 0x01	; 1
-     308:	0c 94 a5 0c 	jmp	0x194a	; 0x194a <mmc_write_sector>
+     308:	0c 94 9f 0c 	jmp	0x193e	; 0x193e <mmc_write_sector>
      30c:	08 95       	ret
 
 0000030e <fat_loadSector>:
@@ -654,7 +654,7 @@ ret
      34a:	51 e0       	ldi	r21, 0x01	; 1
      34c:	c9 01       	movw	r24, r18
      34e:	b8 01       	movw	r22, r16
-     350:	0e 94 a5 0c 	call	0x194a	; 0x194a <mmc_write_sector>
+     350:	0e 94 9f 0c 	call	0x193e	; 0x193e <mmc_write_sector>
      354:	cc e3       	ldi	r28, 0x3C	; 60
      356:	d3 e0       	ldi	r29, 0x03	; 3
      358:	8e 81       	ldd	r24, Y+6	; 0x06
@@ -669,7 +669,7 @@ ret
      372:	51 e0       	ldi	r21, 0x01	; 1
      374:	c7 01       	movw	r24, r14
      376:	b6 01       	movw	r22, r12
-     378:	0e 94 e5 0c 	call	0x19ca	; 0x19ca <mmc_read_sector>
+     378:	0e 94 df 0c 	call	0x19be	; 0x19be <mmc_read_sector>
      37c:	ce 82       	std	Y+6, r12	; 0x06
      37e:	df 82       	std	Y+7, r13	; 0x07
      380:	e8 86       	std	Y+8, r14	; 0x08
@@ -769,7 +769,7 @@ ret
      43c:	f1 e0       	ldi	r31, 0x01	; 1
      43e:	a5 89       	ldd	r26, Z+21	; 0x15
      440:	b0 e0       	ldi	r27, 0x00	; 0
-     442:	0e 94 38 0d 	call	0x1a70	; 0x1a70 <__muluhisi3>
+     442:	0e 94 32 0d 	call	0x1a64	; 0x1a64 <__muluhisi3>
      446:	05 85       	ldd	r16, Z+13	; 0x0d
      448:	16 85       	ldd	r17, Z+14	; 0x0e
      44a:	27 85       	ldd	r18, Z+15	; 0x0f
@@ -799,7 +799,7 @@ ret
      476:	30 e0       	ldi	r19, 0x00	; 0
      478:	40 e0       	ldi	r20, 0x00	; 0
      47a:	50 e0       	ldi	r21, 0x00	; 0
-     47c:	0e 94 16 0d 	call	0x1a2c	; 0x1a2c <__udivmodsi4>
+     47c:	0e 94 10 0d 	call	0x1a20	; 0x1a20 <__udivmodsi4>
      480:	ca 01       	movw	r24, r20
      482:	b9 01       	movw	r22, r18
      484:	6e 5f       	subi	r22, 0xFE	; 254
@@ -919,7 +919,7 @@ ret
      560:	b1 1c       	adc	r11, r1
      562:	c5 01       	movw	r24, r10
      564:	b4 01       	movw	r22, r8
-     566:	0e 94 e5 0c 	call	0x19ca	; 0x19ca <mmc_read_sector>
+     566:	0e 94 df 0c 	call	0x19be	; 0x19be <mmc_read_sector>
      56a:	80 91 42 03 	lds	r24, 0x0342	; 0x800342 <file+0x6>
      56e:	90 91 43 03 	lds	r25, 0x0343	; 0x800343 <file+0x7>
      572:	a0 91 44 03 	lds	r26, 0x0344	; 0x800344 <file+0x8>
@@ -1007,7 +1007,7 @@ ret
      626:	e3 94       	inc	r14
      628:	0a c0       	rjmp	.+20     	; 0x63e <fat_loadFileDataFromCluster+0x154>
      62a:	90 e0       	ldi	r25, 0x00	; 0
-     62c:	0e 94 51 0d 	call	0x1aa2	; 0x1aa2 <toupper>
+     62c:	0e 94 4b 0d 	call	0x1a96	; 0x1a96 <toupper>
      630:	2b 2d       	mov	r18, r11
      632:	30 e0       	ldi	r19, 0x00	; 0
      634:	28 17       	cp	r18, r24
@@ -1242,7 +1242,7 @@ ret
      81e:	8e 32       	cpi	r24, 0x2E	; 46
      820:	51 f1       	breq	.+84     	; 0x876 <fat_makeSfnDataEntry+0xd8>
      822:	90 e0       	ldi	r25, 0x00	; 0
-     824:	0e 94 51 0d 	call	0x1aa2	; 0x1aa2 <toupper>
+     824:	0e 94 4b 0d 	call	0x1a96	; 0x1a96 <toupper>
      828:	f3 01       	movw	r30, r6
      82a:	80 83       	st	Z, r24
      82c:	33 94       	inc	r3
@@ -1256,7 +1256,7 @@ ret
      83c:	88 23       	and	r24, r24
      83e:	31 f0       	breq	.+12     	; 0x84c <fat_makeSfnDataEntry+0xae>
      840:	90 e0       	ldi	r25, 0x00	; 0
-     842:	0e 94 51 0d 	call	0x1aa2	; 0x1aa2 <toupper>
+     842:	0e 94 4b 0d 	call	0x1a96	; 0x1a96 <toupper>
      846:	f3 01       	movw	r30, r6
      848:	80 83       	st	Z, r24
      84a:	33 94       	inc	r3
@@ -2053,7 +2053,7 @@ ret
      ec2:	90 91 45 03 	lds	r25, 0x0345	; 0x800345 <file+0x9>
      ec6:	42 e3       	ldi	r20, 0x32	; 50
      ec8:	51 e0       	ldi	r21, 0x01	; 1
-     eca:	3f d5       	rcall	.+2686   	; 0x194a <mmc_write_sector>
+     eca:	39 d5       	rcall	.+2674   	; 0x193e <mmc_write_sector>
      ecc:	e2 e3       	ldi	r30, 0x32	; 50
      ece:	f3 e0       	ldi	r31, 0x03	; 3
      ed0:	82 e3       	ldi	r24, 0x32	; 50
@@ -2469,7 +2469,7 @@ uint8_t fat_loadFatData(void){
     1204:	60 e0       	ldi	r22, 0x00	; 0
     1206:	70 e0       	ldi	r23, 0x00	; 0
     1208:	cb 01       	movw	r24, r22
-    120a:	df d3       	rcall	.+1982   	; 0x19ca <mmc_read_sector>
+    120a:	d9 d3       	rcall	.+1970   	; 0x19be <mmc_read_sector>
     120c:	c8 2f       	mov	r28, r24
     120e:	81 30       	cpi	r24, 0x01	; 1
     1210:	09 f0       	breq	.+2      	; 0x1214 <fat_loadFatData+0x26>
@@ -2496,7 +2496,7 @@ uint8_t fat_loadFatData(void){
     122e:	51 e0       	ldi	r21, 0x01	; 1
     1230:	c5 01       	movw	r24, r10
     1232:	b4 01       	movw	r22, r8
-    1234:	ca d3       	rcall	.+1940   	; 0x19ca <mmc_read_sector>
+    1234:	c4 d3       	rcall	.+1928   	; 0x19be <mmc_read_sector>
     1236:	03 c0       	rjmp	.+6      	; 0x123e <fat_loadFatData+0x50>
 	#if (MMC_ENDIANNESS_LITTLE==TRUE)
 		void *vsector;
@@ -2593,7 +2593,7 @@ uint8_t fat_loadFatData(void){
 			fat.dataDirSec = fat.fatSec + (fatSz32 * fat.sector[16]);	// data sector (beginnt mit cluster 2)
     12a6:	a0 a5       	ldd	r26, Z+40	; 0x28
     12a8:	b0 e0       	ldi	r27, 0x00	; 0
-    12aa:	e2 d3       	rcall	.+1988   	; 0x1a70 <__muluhisi3>
+    12aa:	dc d3       	rcall	.+1976   	; 0x1a64 <__muluhisi3>
     12ac:	c6 0e       	add	r12, r22
     12ae:	d7 1e       	adc	r13, r23
     12b0:	e8 1e       	adc	r14, r24
@@ -3150,7 +3150,7 @@ int main(void)
 	_delay_ms(1000);
 	
 	if (mmc_init() == FALSE)
-    1614:	ed d0       	rcall	.+474    	; 0x17f0 <mmc_init>
+    1614:	e7 d0       	rcall	.+462    	; 0x17e4 <mmc_init>
     1616:	81 11       	cpse	r24, r1
     1618:	01 c0       	rjmp	.+2      	; 0x161c <main+0x6e>
     161a:	ff cf       	rjmp	.-2      	; 0x161a <main+0x6c>
@@ -3169,7 +3169,7 @@ int main(void)
     1628:	95 de       	rcall	.-726    	; 0x1354 <ffileExsists>
     162a:	81 30       	cpi	r24, 0x01	; 1
     162c:	09 f0       	breq	.+2      	; 0x1630 <main+0x82>
-    162e:	8c c0       	rjmp	.+280    	; 0x1748 <main+0x19a>
+    162e:	86 c0       	rjmp	.+268    	; 0x173c <main+0x18e>
     1630:	62 e7       	ldi	r22, 0x72	; 114
 	{
 		ffopen((uint8_t *) "test.bmp", 'r');
@@ -3195,10 +3195,10 @@ int main(void)
     1652:	7f 4f       	sbci	r23, 0xFF	; 255
     1654:	ce 01       	movw	r24, r28
     1656:	01 96       	adiw	r24, 0x01	; 1
-    1658:	2c d2       	rcall	.+1112   	; 0x1ab2 <strcmp>
+    1658:	26 d2       	rcall	.+1100   	; 0x1aa6 <strcmp>
     165a:	89 2b       	or	r24, r25
     165c:	09 f0       	breq	.+2      	; 0x1660 <main+0xb2>
-    165e:	74 c0       	rjmp	.+232    	; 0x1748 <main+0x19a>
+    165e:	6e c0       	rjmp	.+220    	; 0x173c <main+0x18e>
 		{
 			ffseek(0x0A);
     1660:	6a e0       	ldi	r22, 0x0A	; 10
@@ -3237,7 +3237,7 @@ int main(void)
     1698:	a1 05       	cpc	r26, r1
     169a:	b1 05       	cpc	r27, r1
     169c:	09 f0       	breq	.+2      	; 0x16a0 <main+0xf2>
-    169e:	54 c0       	rjmp	.+168    	; 0x1748 <main+0x19a>
+    169e:	4e c0       	rjmp	.+156    	; 0x173c <main+0x18e>
 			{
 				ffseek(0x16);
     16a0:	66 e1       	ldi	r22, 0x16	; 22
@@ -3267,906 +3267,900 @@ int main(void)
     16c8:	89 2b       	or	r24, r25
     16ca:	8a 2b       	or	r24, r26
     16cc:	8b 2b       	or	r24, r27
-    16ce:	b9 f5       	brne	.+110    	; 0x173e <main+0x190>
-    16d0:	3b c0       	rjmp	.+118    	; 0x1748 <main+0x19a>
+    16ce:	89 f5       	brne	.+98     	; 0x1732 <main+0x184>
 				{
 					for (uint16_t j = 0; j < LED_count; j++)
 					{
-						data_array[j].B = ffread() >> 3;
+						data_array[j].B = ffread() >> brightness;
+    16d0:	35 c0       	rjmp	.+106    	; 0x173c <main+0x18e>
     16d2:	f3 de       	rcall	.-538    	; 0x14ba <ffread>
     16d4:	86 95       	lsr	r24
-    16d6:	86 95       	lsr	r24
-    16d8:	86 95       	lsr	r24
-    16da:	f7 01       	movw	r30, r14
-    16dc:	82 83       	std	Z+2, r24	; 0x02
-    16de:	ed de       	rcall	.-550    	; 0x14ba <ffread>
-						data_array[j].G = ffread() >> 3;
-    16e0:	86 95       	lsr	r24
-    16e2:	86 95       	lsr	r24
+    16d6:	f7 01       	movw	r30, r14
+    16d8:	82 83       	std	Z+2, r24	; 0x02
+						data_array[j].G = ffread() >> brightness;
+    16da:	ef de       	rcall	.-546    	; 0x14ba <ffread>
+    16dc:	86 95       	lsr	r24
+    16de:	f7 01       	movw	r30, r14
+    16e0:	80 83       	st	Z, r24
+    16e2:	eb de       	rcall	.-554    	; 0x14ba <ffread>
+						data_array[j].R = ffread() >> brightness;
     16e4:	86 95       	lsr	r24
     16e6:	f7 01       	movw	r30, r14
-    16e8:	80 83       	st	Z, r24
-    16ea:	e7 de       	rcall	.-562    	; 0x14ba <ffread>
-    16ec:	86 95       	lsr	r24
-						data_array[j].R = ffread() >> 3;
-    16ee:	86 95       	lsr	r24
-    16f0:	86 95       	lsr	r24
-    16f2:	f7 01       	movw	r30, r14
-    16f4:	81 83       	std	Z+1, r24	; 0x01
-    16f6:	81 11       	cpse	r24, r1
-    16f8:	07 c0       	rjmp	.+14     	; 0x1708 <main+0x15a>
-    16fa:	80 81       	ld	r24, Z
+    16e8:	81 83       	std	Z+1, r24	; 0x01
+    16ea:	81 11       	cpse	r24, r1
+    16ec:	07 c0       	rjmp	.+14     	; 0x16fc <main+0x14e>
 						if ((data_array[j].R == 0) && (data_array[j].G == 0) && (data_array[j].B == 0))
-    16fc:	81 11       	cpse	r24, r1
-    16fe:	04 c0       	rjmp	.+8      	; 0x1708 <main+0x15a>
-    1700:	82 81       	ldd	r24, Z+2	; 0x02
-    1702:	81 11       	cpse	r24, r1
-    1704:	01 c0       	rjmp	.+2      	; 0x1708 <main+0x15a>
-    1706:	d8 9a       	sbi	0x1b, 0	; 27
-    1708:	f3 e0       	ldi	r31, 0x03	; 3
-    170a:	ef 0e       	add	r14, r31
+    16ee:	80 81       	ld	r24, Z
+    16f0:	81 11       	cpse	r24, r1
+    16f2:	04 c0       	rjmp	.+8      	; 0x16fc <main+0x14e>
+    16f4:	82 81       	ldd	r24, Z+2	; 0x02
+    16f6:	81 11       	cpse	r24, r1
+    16f8:	01 c0       	rjmp	.+2      	; 0x16fc <main+0x14e>
+    16fa:	d8 9a       	sbi	0x1b, 0	; 27
+    16fc:	f3 e0       	ldi	r31, 0x03	; 3
 							LED_on;
-    170c:	f1 1c       	adc	r15, r1
-    170e:	e0 16       	cp	r14, r16
-    1710:	f1 06       	cpc	r15, r17
-    1712:	f9 f6       	brne	.-66     	; 0x16d2 <main+0x124>
+    16fe:	ef 0e       	add	r14, r31
+    1700:	f1 1c       	adc	r15, r1
+    1702:	e0 16       	cp	r14, r16
+    1704:	f1 06       	cpc	r15, r17
 				read_block(4, (char *) &width);
 				
 				ffseek(start_offset);
 				for (uint32_t i = 0; i < width; i++)
 				{
 					for (uint16_t j = 0; j < LED_count; j++)
-    1714:	60 e6       	ldi	r22, 0x60	; 96
-    1716:	73 e0       	ldi	r23, 0x03	; 3
-    1718:	85 e5       	ldi	r24, 0x55	; 85
-						data_array[j].R = ffread() >> 3;
+    1706:	29 f7       	brne	.-54     	; 0x16d2 <main+0x124>
+    1708:	60 e6       	ldi	r22, 0x60	; 96
+    170a:	73 e0       	ldi	r23, 0x03	; 3
+						data_array[j].R = ffread() >> brightness;
 						if ((data_array[j].R == 0) && (data_array[j].G == 0) && (data_array[j].B == 0))
 							LED_on;
 					}
 					
 					FastSPI_write((uint8_t *) data_array, LED_count*3);
-    171a:	93 e0       	ldi	r25, 0x03	; 3
-    171c:	0e 94 66 00 	call	0xcc	; 0xcc <FastSPI_write>
-    1720:	2f ef       	ldi	r18, 0xFF	; 255
-    1722:	82 1a       	sub	r8, r18
-    1724:	92 0a       	sbc	r9, r18
+    170c:	85 e5       	ldi	r24, 0x55	; 85
+    170e:	93 e0       	ldi	r25, 0x03	; 3
+    1710:	0e 94 66 00 	call	0xcc	; 0xcc <FastSPI_write>
+    1714:	2f ef       	ldi	r18, 0xFF	; 255
+    1716:	82 1a       	sub	r8, r18
 			{
 				ffseek(0x16);
 				read_block(4, (char *) &width);
 				
 				ffseek(start_offset);
 				for (uint32_t i = 0; i < width; i++)
-    1726:	a2 0a       	sbc	r10, r18
-    1728:	b2 0a       	sbc	r11, r18
-    172a:	8d a5       	ldd	r24, Y+45	; 0x2d
-    172c:	9e a5       	ldd	r25, Y+46	; 0x2e
-    172e:	af a5       	ldd	r26, Y+47	; 0x2f
-    1730:	b8 a9       	ldd	r27, Y+48	; 0x30
-    1732:	88 16       	cp	r8, r24
-    1734:	99 06       	cpc	r9, r25
-    1736:	aa 06       	cpc	r10, r26
-    1738:	bb 06       	cpc	r11, r27
-    173a:	20 f0       	brcs	.+8      	; 0x1744 <main+0x196>
-    173c:	05 c0       	rjmp	.+10     	; 0x1748 <main+0x19a>
-    173e:	81 2c       	mov	r8, r1
-    1740:	91 2c       	mov	r9, r1
-    1742:	54 01       	movw	r10, r8
-    1744:	76 01       	movw	r14, r12
-    1746:	c5 cf       	rjmp	.-118    	; 0x16d2 <main+0x124>
-    1748:	f6 01       	movw	r30, r12
+    1718:	92 0a       	sbc	r9, r18
+    171a:	a2 0a       	sbc	r10, r18
+    171c:	b2 0a       	sbc	r11, r18
+    171e:	8d a5       	ldd	r24, Y+45	; 0x2d
+    1720:	9e a5       	ldd	r25, Y+46	; 0x2e
+    1722:	af a5       	ldd	r26, Y+47	; 0x2f
+    1724:	b8 a9       	ldd	r27, Y+48	; 0x30
+    1726:	88 16       	cp	r8, r24
+    1728:	99 06       	cpc	r9, r25
+    172a:	aa 06       	cpc	r10, r26
+    172c:	bb 06       	cpc	r11, r27
+    172e:	20 f0       	brcs	.+8      	; 0x1738 <main+0x18a>
+    1730:	05 c0       	rjmp	.+10     	; 0x173c <main+0x18e>
+    1732:	81 2c       	mov	r8, r1
+    1734:	91 2c       	mov	r9, r1
+    1736:	54 01       	movw	r10, r8
+    1738:	76 01       	movw	r14, r12
+    173a:	cb cf       	rjmp	.-106    	; 0x16d2 <main+0x124>
 	DDRA |= (1 << PA0);
 	DDRD |= (1 << PD5);
 	
 	char buffer[20], comp[20];
 	uint32_t start_offset = 0;
 	uint32_t width = 0;
-    174a:	11 82       	std	Z+1, r1	; 0x01
-    174c:	10 82       	st	Z, r1
+    173c:	f6 01       	movw	r30, r12
+    173e:	11 82       	std	Z+1, r1	; 0x01
 		}
 	}
 	
 	for (uint16_t i = 0; i < LED_count; i++)
 	{
 		data_array[i].R = 0;
-    174e:	12 82       	std	Z+2, r1	; 0x02
-    1750:	f3 e0       	ldi	r31, 0x03	; 3
+    1740:	10 82       	st	Z, r1
+    1742:	12 82       	std	Z+2, r1	; 0x02
 		data_array[i].G = 0;
-    1752:	cf 0e       	add	r12, r31
+    1744:	f3 e0       	ldi	r31, 0x03	; 3
 		data_array[i].B = 0;
-    1754:	d1 1c       	adc	r13, r1
-    1756:	c0 16       	cp	r12, r16
-    1758:	d1 06       	cpc	r13, r17
-    175a:	b1 f7       	brne	.-20     	; 0x1748 <main+0x19a>
+    1746:	cf 0e       	add	r12, r31
+    1748:	d1 1c       	adc	r13, r1
+    174a:	c0 16       	cp	r12, r16
+    174c:	d1 06       	cpc	r13, r17
 				}
 			}
 		}
 	}
 	
 	for (uint16_t i = 0; i < LED_count; i++)
-    175c:	60 e6       	ldi	r22, 0x60	; 96
-    175e:	73 e0       	ldi	r23, 0x03	; 3
-    1760:	85 e5       	ldi	r24, 0x55	; 85
+    174e:	b1 f7       	brne	.-20     	; 0x173c <main+0x18e>
+    1750:	60 e6       	ldi	r22, 0x60	; 96
+    1752:	73 e0       	ldi	r23, 0x03	; 3
 	{
 		data_array[i].R = 0;
 		data_array[i].G = 0;
 		data_array[i].B = 0;
 	}
 	FastSPI_write((uint8_t *) data_array, LED_count*3);
-    1762:	93 e0       	ldi	r25, 0x03	; 3
-    1764:	0e 94 66 00 	call	0xcc	; 0xcc <FastSPI_write>
-    1768:	ff cf       	rjmp	.-2      	; 0x1768 <main+0x1ba>
+    1754:	85 e5       	ldi	r24, 0x55	; 85
+    1756:	93 e0       	ldi	r25, 0x03	; 3
+    1758:	0e 94 66 00 	call	0xcc	; 0xcc <FastSPI_write>
+    175c:	ff cf       	rjmp	.-2      	; 0x175c <main+0x1ae>
 
-0000176a <spi_write_byte>:
+0000175e <spi_write_byte>:
 		uint8_t a;
 	#endif
 
 	// mmc/sd in hardware spi
 	#if (MMC_SOFT_SPI==FALSE)
 		SPDR = byte;    						//Sendet ein Byte
-    176a:	8f b9       	out	0x0f, r24	; 15
+    175e:	8f b9       	out	0x0f, r24	; 15
 		loop_until_bit_is_set(SPSR,SPIF);
-    176c:	77 9b       	sbis	0x0e, 7	; 14
-    176e:	fe cf       	rjmp	.-4      	; 0x176c <spi_write_byte+0x2>
+    1760:	77 9b       	sbis	0x0e, 7	; 14
+    1762:	fe cf       	rjmp	.-4      	; 0x1760 <spi_write_byte+0x2>
 			MMC_Write |= (1<<SPI_Clock); 		//setzt Clock Impuls wieder auf (High)
 			MMC_Write &= ~(1<<SPI_Clock);		//erzeugt ein Clock Impuls (LOW)
 		}
 		MMC_Write |= (1<<SPI_MOSI);				//setzt Output wieder auf High
 	#endif
 }
-    1770:	08 95       	ret
+    1764:	08 95       	ret
 
-00001772 <spi_read_byte>:
+00001766 <spi_read_byte>:
 // *****************************************************************************
 static uint8_t spi_read_byte(void){
 	
 	// mmc/sd in hardware spi
 	#if (MMC_SOFT_SPI==FALSE)
 	  SPDR = 0xff;
-    1772:	8f ef       	ldi	r24, 0xFF	; 255
-    1774:	8f b9       	out	0x0f, r24	; 15
+    1766:	8f ef       	ldi	r24, 0xFF	; 255
+    1768:	8f b9       	out	0x0f, r24	; 15
 	  loop_until_bit_is_set(SPSR,SPIF);
-    1776:	77 9b       	sbis	0x0e, 7	; 14
-    1778:	fe cf       	rjmp	.-4      	; 0x1776 <spi_read_byte+0x4>
+    176a:	77 9b       	sbis	0x0e, 7	; 14
+    176c:	fe cf       	rjmp	.-4      	; 0x176a <spi_read_byte+0x4>
 	  return (SPDR);
-    177a:	8f b1       	in	r24, 0x0f	; 15
+    176e:	8f b1       	in	r24, 0x0f	; 15
 			}
 			MMC_Write &=~(1<<SPI_Clock); 				//erzeugt ein Clock Impuls (Low)
 		}
 		return (Byte);
 	#endif
 }
-    177c:	08 95       	ret
+    1770:	08 95       	ret
 
-0000177e <mmc_disable>:
+00001772 <mmc_disable>:
 }
 
 // **********************************************************************************************************************************
 static void mmc_disable(){
 
    MMC_CS_HIGH;   
-    177e:	c0 9a       	sbi	0x18, 0	; 24
+    1772:	c0 9a       	sbi	0x18, 0	; 24
    spi_read_byte();
-    1780:	f8 cf       	rjmp	.-16     	; 0x1772 <spi_read_byte>
-    1782:	08 95       	ret
+    1774:	f8 cf       	rjmp	.-16     	; 0x1766 <spi_read_byte>
+    1776:	08 95       	ret
 
-00001784 <mmc_send_cmd>:
+00001778 <mmc_send_cmd>:
 
 	return TRUE;
 }
 
 // **********************************************************************************************************************************
 static uint8_t mmc_send_cmd (	uint8_t cmd,	uint32_t arg){
-    1784:	ff 92       	push	r15
-    1786:	0f 93       	push	r16
-    1788:	1f 93       	push	r17
-    178a:	cf 93       	push	r28
-    178c:	df 93       	push	r29
-    178e:	c8 2f       	mov	r28, r24
-    1790:	d4 2f       	mov	r29, r20
-    1792:	15 2f       	mov	r17, r21
-    1794:	06 2f       	mov	r16, r22
-    1796:	f7 2e       	mov	r15, r23
+    1778:	ff 92       	push	r15
+    177a:	0f 93       	push	r16
+    177c:	1f 93       	push	r17
+    177e:	cf 93       	push	r28
+    1780:	df 93       	push	r29
+    1782:	c8 2f       	mov	r28, r24
+    1784:	d4 2f       	mov	r29, r20
+    1786:	15 2f       	mov	r17, r21
+    1788:	06 2f       	mov	r16, r22
+    178a:	f7 2e       	mov	r15, r23
 	
 	uint8_t n, res;
 	// Select the card and wait for ready 
 	mmc_disable();
-    1798:	f2 df       	rcall	.-28     	; 0x177e <mmc_disable>
+    178c:	f2 df       	rcall	.-28     	; 0x1772 <mmc_disable>
 static uint8_t mmc_wait_ready (void){
 
 
 	while(1)
 	{
 		if(	 spi_read_byte() == 0xFF ) return TRUE;
-    179a:	c0 98       	cbi	0x18, 0	; 24
-    179c:	ea df       	rcall	.-44     	; 0x1772 <spi_read_byte>
-    179e:	8f 3f       	cpi	r24, 0xFF	; 255
-    17a0:	e9 f7       	brne	.-6      	; 0x179c <mmc_send_cmd+0x18>
+    178e:	c0 98       	cbi	0x18, 0	; 24
+    1790:	ea df       	rcall	.-44     	; 0x1766 <spi_read_byte>
+    1792:	8f 3f       	cpi	r24, 0xFF	; 255
+    1794:	e9 f7       	brne	.-6      	; 0x1790 <mmc_send_cmd+0x18>
 	mmc_disable();
 	if ( FALSE == mmc_enable() ){
 		return 0xFF;
 	}
 	// Send command packet 
 	spi_write_byte(0x40 | cmd);						// Start + Command index 
-    17a2:	8c 2f       	mov	r24, r28
-    17a4:	80 64       	ori	r24, 0x40	; 64
+    1796:	8c 2f       	mov	r24, r28
+    1798:	80 64       	ori	r24, 0x40	; 64
 	spi_write_byte( (uint8_t)(arg >> 24) );	// Argument[31..24]
-    17a6:	e1 df       	rcall	.-62     	; 0x176a <spi_write_byte>
-    17a8:	8f 2d       	mov	r24, r15
+    179a:	e1 df       	rcall	.-62     	; 0x175e <spi_write_byte>
+    179c:	8f 2d       	mov	r24, r15
 	spi_write_byte( (uint8_t)(arg >> 16) );	// Argument[23..16]
-    17aa:	df df       	rcall	.-66     	; 0x176a <spi_write_byte>
-    17ac:	80 2f       	mov	r24, r16
+    179e:	df df       	rcall	.-66     	; 0x175e <spi_write_byte>
+    17a0:	80 2f       	mov	r24, r16
 	spi_write_byte( (uint8_t)(arg >> 8) );	// Argument[15..8]
-    17ae:	dd df       	rcall	.-70     	; 0x176a <spi_write_byte>
-    17b0:	81 2f       	mov	r24, r17
-    17b2:	db df       	rcall	.-74     	; 0x176a <spi_write_byte>
+    17a2:	dd df       	rcall	.-70     	; 0x175e <spi_write_byte>
+    17a4:	81 2f       	mov	r24, r17
+    17a6:	db df       	rcall	.-74     	; 0x175e <spi_write_byte>
 	spi_write_byte( (uint8_t)arg );			// Argument[7..0]
-    17b4:	8d 2f       	mov	r24, r29
-    17b6:	d9 df       	rcall	.-78     	; 0x176a <spi_write_byte>
+    17a8:	8d 2f       	mov	r24, r29
+    17aa:	d9 df       	rcall	.-78     	; 0x175e <spi_write_byte>
 	n = 0x01;										// Dummy CRC + Stop 
 	if (cmd == CMD0) n = 0x95;						// Valid CRC for CMD0(0) 
-    17b8:	cc 23       	and	r28, r28
+    17ac:	cc 23       	and	r28, r28
 	if (cmd == CMD8) n = 0x87;						// Valid CRC for CMD8(0x1AA) 
-    17ba:	89 f0       	breq	.+34     	; 0x17de <mmc_send_cmd+0x5a>
+    17ae:	89 f0       	breq	.+34     	; 0x17d2 <mmc_send_cmd+0x5a>
 	spi_write_byte(n);
-    17bc:	c8 30       	cpi	r28, 0x08	; 8
-    17be:	61 f0       	breq	.+24     	; 0x17d8 <mmc_send_cmd+0x54>
-    17c0:	81 e0       	ldi	r24, 0x01	; 1
+    17b0:	c8 30       	cpi	r28, 0x08	; 8
+    17b2:	61 f0       	breq	.+24     	; 0x17cc <mmc_send_cmd+0x54>
+    17b4:	81 e0       	ldi	r24, 0x01	; 1
 
 	// Receive command response 
 	if (cmd == CMD12) spi_read_byte();				// Skip a stuff byte when stop reading 
-    17c2:	d3 df       	rcall	.-90     	; 0x176a <spi_write_byte>
-    17c4:	cc 30       	cpi	r28, 0x0C	; 12
-    17c6:	09 f4       	brne	.+2      	; 0x17ca <mmc_send_cmd+0x46>
+    17b6:	d3 df       	rcall	.-90     	; 0x175e <spi_write_byte>
+    17b8:	cc 30       	cpi	r28, 0x0C	; 12
+    17ba:	09 f4       	brne	.+2      	; 0x17be <mmc_send_cmd+0x46>
 
 	return TRUE;
 }
 
 // **********************************************************************************************************************************
 static uint8_t mmc_send_cmd (	uint8_t cmd,	uint32_t arg){
-    17c8:	d4 df       	rcall	.-88     	; 0x1772 <spi_read_byte>
+    17bc:	d4 df       	rcall	.-88     	; 0x1766 <spi_read_byte>
 
 	// Receive command response 
 	if (cmd == CMD12) spi_read_byte();				// Skip a stuff byte when stop reading 
 	n = 10;											// Wait for a valid response in timeout of 10 attempts 
 	do
 		res = spi_read_byte();
-    17ca:	ca e0       	ldi	r28, 0x0A	; 10
+    17be:	ca e0       	ldi	r28, 0x0A	; 10
 	while ( (res & 0x80) && --n );
-    17cc:	d2 df       	rcall	.-92     	; 0x1772 <spi_read_byte>
-    17ce:	88 23       	and	r24, r24
-    17d0:	4c f4       	brge	.+18     	; 0x17e4 <mmc_send_cmd+0x60>
-    17d2:	c1 50       	subi	r28, 0x01	; 1
-    17d4:	d9 f7       	brne	.-10     	; 0x17cc <mmc_send_cmd+0x48>
+    17c0:	d2 df       	rcall	.-92     	; 0x1766 <spi_read_byte>
+    17c2:	88 23       	and	r24, r24
+    17c4:	4c f4       	brge	.+18     	; 0x17d8 <mmc_send_cmd+0x60>
+    17c6:	c1 50       	subi	r28, 0x01	; 1
+    17c8:	d9 f7       	brne	.-10     	; 0x17c0 <mmc_send_cmd+0x48>
 	spi_write_byte( (uint8_t)(arg >> 8) );	// Argument[15..8]
 	spi_write_byte( (uint8_t)arg );			// Argument[7..0]
 	n = 0x01;										// Dummy CRC + Stop 
 	if (cmd == CMD0) n = 0x95;						// Valid CRC for CMD0(0) 
 	if (cmd == CMD8) n = 0x87;						// Valid CRC for CMD8(0x1AA) 
 	spi_write_byte(n);
-    17d6:	06 c0       	rjmp	.+12     	; 0x17e4 <mmc_send_cmd+0x60>
-    17d8:	87 e8       	ldi	r24, 0x87	; 135
-    17da:	c7 df       	rcall	.-114    	; 0x176a <spi_write_byte>
-    17dc:	f6 cf       	rjmp	.-20     	; 0x17ca <mmc_send_cmd+0x46>
-    17de:	85 e9       	ldi	r24, 0x95	; 149
-    17e0:	c4 df       	rcall	.-120    	; 0x176a <spi_write_byte>
-    17e2:	f3 cf       	rjmp	.-26     	; 0x17ca <mmc_send_cmd+0x46>
-    17e4:	df 91       	pop	r29
+    17ca:	06 c0       	rjmp	.+12     	; 0x17d8 <mmc_send_cmd+0x60>
+    17cc:	87 e8       	ldi	r24, 0x87	; 135
+    17ce:	c7 df       	rcall	.-114    	; 0x175e <spi_write_byte>
+    17d0:	f6 cf       	rjmp	.-20     	; 0x17be <mmc_send_cmd+0x46>
+    17d2:	85 e9       	ldi	r24, 0x95	; 149
+    17d4:	c4 df       	rcall	.-120    	; 0x175e <spi_write_byte>
+    17d6:	f3 cf       	rjmp	.-26     	; 0x17be <mmc_send_cmd+0x46>
+    17d8:	df 91       	pop	r29
 	do
 		res = spi_read_byte();
 	while ( (res & 0x80) && --n );
 
 	return res;										// Return with the response value 
 }
-    17e6:	cf 91       	pop	r28
-    17e8:	1f 91       	pop	r17
-    17ea:	0f 91       	pop	r16
-    17ec:	ff 90       	pop	r15
-    17ee:	08 95       	ret
+    17da:	cf 91       	pop	r28
+    17dc:	1f 91       	pop	r17
+    17de:	0f 91       	pop	r16
+    17e0:	ff 90       	pop	r15
+    17e2:	08 95       	ret
 
-000017f0 <mmc_init>:
-    17f0:	af 92       	push	r10
+000017e4 <mmc_init>:
+    17e4:	af 92       	push	r10
 
 
 
 
 // **********************************************************************************************************************************
 uint8_t mmc_init (void){
-    17f2:	bf 92       	push	r11
-    17f4:	cf 92       	push	r12
-    17f6:	df 92       	push	r13
-    17f8:	ff 92       	push	r15
-    17fa:	0f 93       	push	r16
-    17fc:	1f 93       	push	r17
-    17fe:	cf 93       	push	r28
-    1800:	df 93       	push	r29
-    1802:	00 d0       	rcall	.+0      	; 0x1804 <mmc_init+0x14>
-    1804:	00 d0       	rcall	.+0      	; 0x1806 <mmc_init+0x16>
-    1806:	cd b7       	in	r28, 0x3d	; 61
-    1808:	de b7       	in	r29, 0x3e	; 62
+    17e6:	bf 92       	push	r11
+    17e8:	cf 92       	push	r12
+    17ea:	df 92       	push	r13
+    17ec:	ff 92       	push	r15
+    17ee:	0f 93       	push	r16
+    17f0:	1f 93       	push	r17
+    17f2:	cf 93       	push	r28
+    17f4:	df 93       	push	r29
+    17f6:	00 d0       	rcall	.+0      	; 0x17f8 <mmc_init+0x14>
+    17f8:	00 d0       	rcall	.+0      	; 0x17fa <mmc_init+0x16>
+    17fa:	cd b7       	in	r28, 0x3d	; 61
+    17fc:	de b7       	in	r29, 0x3e	; 62
 
 // *****************************************************************************
 static void spi_init(void){
  	
 	// port configuration der mmc/sd/sdhc karte
 	MMC_Direction_REG &=~(1<<SPI_MISO);         // miso auf input
-    180a:	bb 98       	cbi	0x17, 3	; 23
+    17fe:	bb 98       	cbi	0x17, 3	; 23
 	MMC_Direction_REG |= (1<<SPI_Clock);      	// clock auf output
-    180c:	b9 9a       	sbi	0x17, 1	; 23
+    1800:	b9 9a       	sbi	0x17, 1	; 23
 	MMC_Direction_REG |= (1<<SPI_MOSI);         // mosi auf output
-    180e:	ba 9a       	sbi	0x17, 2	; 23
+    1802:	ba 9a       	sbi	0x17, 2	; 23
 	MMC_Direction_REG |= (1<<SPI_SS);			// chip select auf output
-    1810:	b8 9a       	sbi	0x17, 0	; 23
+    1804:	b8 9a       	sbi	0x17, 0	; 23
 
 	// hardware spi: bus clock = idle low, spi clock / 128 , spi master mode
 	SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0)|(1<<SPR1);
-    1812:	83 e5       	ldi	r24, 0x53	; 83
-    1814:	8d b9       	out	0x0d, r24	; 13
+    1806:	83 e5       	ldi	r24, 0x53	; 83
+    1808:	8d b9       	out	0x0d, r24	; 13
 
 	MMC_Write |= (1<<SPI_SS);       	// chip selet auf high, karte anwaehlen
-    1816:	c0 9a       	sbi	0x18, 0	; 24
+    180a:	c0 9a       	sbi	0x18, 0	; 24
 
 	uint8_t cmd, ty, ocr[4];
 	uint16_t n, j;
 
 	spi_init();
 	mmc_disable();
-    1818:	b2 df       	rcall	.-156    	; 0x177e <mmc_disable>
-    181a:	04 e6       	ldi	r16, 0x64	; 100
-    181c:	10 e0       	ldi	r17, 0x00	; 0
+    180c:	b2 df       	rcall	.-156    	; 0x1772 <mmc_disable>
+    180e:	04 e6       	ldi	r16, 0x64	; 100
+    1810:	10 e0       	ldi	r17, 0x00	; 0
 
 	for (n = 100; n; n--) spi_read_byte();    					// 80+ dummy clocks
-    181e:	a9 df       	rcall	.-174    	; 0x1772 <spi_read_byte>
-    1820:	01 50       	subi	r16, 0x01	; 1
-    1822:	11 09       	sbc	r17, r1
-    1824:	e1 f7       	brne	.-8      	; 0x181e <mmc_init+0x2e>
-    1826:	04 e6       	ldi	r16, 0x64	; 100
-    1828:	10 e0       	ldi	r17, 0x00	; 0
-    182a:	f1 2c       	mov	r15, r1
-    182c:	40 e0       	ldi	r20, 0x00	; 0
+    1812:	a9 df       	rcall	.-174    	; 0x1766 <spi_read_byte>
+    1814:	01 50       	subi	r16, 0x01	; 1
+    1816:	11 09       	sbc	r17, r1
+    1818:	e1 f7       	brne	.-8      	; 0x1812 <mmc_init+0x2e>
+    181a:	04 e6       	ldi	r16, 0x64	; 100
+    181c:	10 e0       	ldi	r17, 0x00	; 0
+    181e:	f1 2c       	mov	r15, r1
+    1820:	40 e0       	ldi	r20, 0x00	; 0
 
 	ty = 0;
 	j=100;
 	do {
 		if (mmc_send_cmd(CMD0, 0) == 1) {      					// Enter Idle state
-    182e:	50 e0       	ldi	r21, 0x00	; 0
-    1830:	ba 01       	movw	r22, r20
-    1832:	80 e0       	ldi	r24, 0x00	; 0
-    1834:	a7 df       	rcall	.-178    	; 0x1784 <mmc_send_cmd>
-    1836:	81 30       	cpi	r24, 0x01	; 1
-    1838:	09 f0       	breq	.+2      	; 0x183c <mmc_init+0x4c>
-    183a:	62 c0       	rjmp	.+196    	; 0x1900 <mmc_init+0x110>
-    183c:	4a ea       	ldi	r20, 0xAA	; 170
+    1822:	50 e0       	ldi	r21, 0x00	; 0
+    1824:	ba 01       	movw	r22, r20
+    1826:	80 e0       	ldi	r24, 0x00	; 0
+    1828:	a7 df       	rcall	.-178    	; 0x1778 <mmc_send_cmd>
+    182a:	81 30       	cpi	r24, 0x01	; 1
+    182c:	09 f0       	breq	.+2      	; 0x1830 <mmc_init+0x4c>
+    182e:	62 c0       	rjmp	.+196    	; 0x18f4 <mmc_init+0x110>
+    1830:	4a ea       	ldi	r20, 0xAA	; 170
 			j=0;
 
 			if (mmc_send_cmd(CMD8, 0x1AA) == 1) {  				// SDv2?
-    183e:	51 e0       	ldi	r21, 0x01	; 1
-    1840:	60 e0       	ldi	r22, 0x00	; 0
-    1842:	70 e0       	ldi	r23, 0x00	; 0
-    1844:	88 e0       	ldi	r24, 0x08	; 8
-    1846:	9e df       	rcall	.-196    	; 0x1784 <mmc_send_cmd>
-    1848:	81 30       	cpi	r24, 0x01	; 1
-    184a:	c1 f5       	brne	.+112    	; 0x18bc <mmc_init+0xcc>
-    184c:	ce 01       	movw	r24, r28
-    184e:	01 96       	adiw	r24, 0x01	; 1
-    1850:	5c 01       	movw	r10, r24
-    1852:	6e 01       	movw	r12, r28
-    1854:	95 e0       	ldi	r25, 0x05	; 5
-    1856:	c9 0e       	add	r12, r25
-    1858:	d1 1c       	adc	r13, r1
-    185a:	85 01       	movw	r16, r10
+    1832:	51 e0       	ldi	r21, 0x01	; 1
+    1834:	60 e0       	ldi	r22, 0x00	; 0
+    1836:	70 e0       	ldi	r23, 0x00	; 0
+    1838:	88 e0       	ldi	r24, 0x08	; 8
+    183a:	9e df       	rcall	.-196    	; 0x1778 <mmc_send_cmd>
+    183c:	81 30       	cpi	r24, 0x01	; 1
+    183e:	c1 f5       	brne	.+112    	; 0x18b0 <mmc_init+0xcc>
+    1840:	ce 01       	movw	r24, r28
+    1842:	01 96       	adiw	r24, 0x01	; 1
+    1844:	5c 01       	movw	r10, r24
+    1846:	6e 01       	movw	r12, r28
+    1848:	95 e0       	ldi	r25, 0x05	; 5
+    184a:	c9 0e       	add	r12, r25
+    184c:	d1 1c       	adc	r13, r1
+    184e:	85 01       	movw	r16, r10
 				for (n = 0; n < 4; n++){
 					ocr[n] = spi_read_byte();    				// Get trailing return value of R7 resp
-    185c:	8a df       	rcall	.-236    	; 0x1772 <spi_read_byte>
-    185e:	f8 01       	movw	r30, r16
-    1860:	81 93       	st	Z+, r24
-    1862:	8f 01       	movw	r16, r30
-    1864:	ce 16       	cp	r12, r30
+    1850:	8a df       	rcall	.-236    	; 0x1766 <spi_read_byte>
+    1852:	f8 01       	movw	r30, r16
+    1854:	81 93       	st	Z+, r24
+    1856:	8f 01       	movw	r16, r30
+    1858:	ce 16       	cp	r12, r30
 	do {
 		if (mmc_send_cmd(CMD0, 0) == 1) {      					// Enter Idle state
 			j=0;
 
 			if (mmc_send_cmd(CMD8, 0x1AA) == 1) {  				// SDv2?
 				for (n = 0; n < 4; n++){
-    1866:	df 06       	cpc	r13, r31
-    1868:	c9 f7       	brne	.-14     	; 0x185c <mmc_init+0x6c>
-    186a:	8b 81       	ldd	r24, Y+3	; 0x03
+    185a:	df 06       	cpc	r13, r31
+    185c:	c9 f7       	brne	.-14     	; 0x1850 <mmc_init+0x6c>
+    185e:	8b 81       	ldd	r24, Y+3	; 0x03
 					ocr[n] = spi_read_byte();    				// Get trailing return value of R7 resp
 				}
 				if (ocr[2] == 0x01 && ocr[3] == 0xAA) {         // The card can work at vdd range of 2.7-3.6V
-    186c:	81 30       	cpi	r24, 0x01	; 1
-    186e:	09 f0       	breq	.+2      	; 0x1872 <mmc_init+0x82>
-    1870:	3b c0       	rjmp	.+118    	; 0x18e8 <mmc_init+0xf8>
-    1872:	8c 81       	ldd	r24, Y+4	; 0x04
-    1874:	8a 3a       	cpi	r24, 0xAA	; 170
-    1876:	c1 f5       	brne	.+112    	; 0x18e8 <mmc_init+0xf8>
+    1860:	81 30       	cpi	r24, 0x01	; 1
+    1862:	09 f0       	breq	.+2      	; 0x1866 <mmc_init+0x82>
+    1864:	3b c0       	rjmp	.+118    	; 0x18dc <mmc_init+0xf8>
+    1866:	8c 81       	ldd	r24, Y+4	; 0x04
+    1868:	8a 3a       	cpi	r24, 0xAA	; 170
+    186a:	c1 f5       	brne	.+112    	; 0x18dc <mmc_init+0xf8>
 					while (1) {  						// Wait for leaving idle state (ACMD41 with HCS bit)
 						mmc_send_cmd(CMD55, 0);
-    1878:	40 e0       	ldi	r20, 0x00	; 0
-    187a:	50 e0       	ldi	r21, 0x00	; 0
-    187c:	ba 01       	movw	r22, r20
-    187e:	87 e3       	ldi	r24, 0x37	; 55
-    1880:	81 df       	rcall	.-254    	; 0x1784 <mmc_send_cmd>
+    186c:	40 e0       	ldi	r20, 0x00	; 0
+    186e:	50 e0       	ldi	r21, 0x00	; 0
+    1870:	ba 01       	movw	r22, r20
+    1872:	87 e3       	ldi	r24, 0x37	; 55
+    1874:	81 df       	rcall	.-254    	; 0x1778 <mmc_send_cmd>
 						if(!mmc_send_cmd(ACMD41, 1UL << 30))
-    1882:	40 e0       	ldi	r20, 0x00	; 0
-    1884:	50 e0       	ldi	r21, 0x00	; 0
-    1886:	60 e0       	ldi	r22, 0x00	; 0
-    1888:	70 e4       	ldi	r23, 0x40	; 64
-    188a:	89 e2       	ldi	r24, 0x29	; 41
-    188c:	7b df       	rcall	.-266    	; 0x1784 <mmc_send_cmd>
-    188e:	81 11       	cpse	r24, r1
-    1890:	f3 cf       	rjmp	.-26     	; 0x1878 <mmc_init+0x88>
+    1876:	40 e0       	ldi	r20, 0x00	; 0
+    1878:	50 e0       	ldi	r21, 0x00	; 0
+    187a:	60 e0       	ldi	r22, 0x00	; 0
+    187c:	70 e4       	ldi	r23, 0x40	; 64
+    187e:	89 e2       	ldi	r24, 0x29	; 41
+    1880:	7b df       	rcall	.-266    	; 0x1778 <mmc_send_cmd>
+    1882:	81 11       	cpse	r24, r1
+    1884:	f3 cf       	rjmp	.-26     	; 0x186c <mmc_init+0x88>
 							break;
 					}
 
 					while(1) {
 						if (mmc_send_cmd(CMD58, 0) == 0x00) {    // Check CCS bit in the OCR
-    1892:	40 e0       	ldi	r20, 0x00	; 0
-    1894:	50 e0       	ldi	r21, 0x00	; 0
-    1896:	ba 01       	movw	r22, r20
-    1898:	8a e3       	ldi	r24, 0x3A	; 58
-    189a:	74 df       	rcall	.-280    	; 0x1784 <mmc_send_cmd>
-    189c:	81 11       	cpse	r24, r1
-    189e:	f9 cf       	rjmp	.-14     	; 0x1892 <mmc_init+0xa2>
+    1886:	40 e0       	ldi	r20, 0x00	; 0
+    1888:	50 e0       	ldi	r21, 0x00	; 0
+    188a:	ba 01       	movw	r22, r20
+    188c:	8a e3       	ldi	r24, 0x3A	; 58
+    188e:	74 df       	rcall	.-280    	; 0x1778 <mmc_send_cmd>
+    1890:	81 11       	cpse	r24, r1
+    1892:	f9 cf       	rjmp	.-14     	; 0x1886 <mmc_init+0xa2>
 							for (n = 0; n < 4; n++){
 								ocr[n] = spi_read_byte();
-    18a0:	68 df       	rcall	.-304    	; 0x1772 <spi_read_byte>
-    18a2:	f5 01       	movw	r30, r10
-    18a4:	81 93       	st	Z+, r24
-    18a6:	5f 01       	movw	r10, r30
-    18a8:	ce 16       	cp	r12, r30
+    1894:	68 df       	rcall	.-304    	; 0x1766 <spi_read_byte>
+    1896:	f5 01       	movw	r30, r10
+    1898:	81 93       	st	Z+, r24
+    189a:	5f 01       	movw	r10, r30
+    189c:	ce 16       	cp	r12, r30
 							break;
 					}
 
 					while(1) {
 						if (mmc_send_cmd(CMD58, 0) == 0x00) {    // Check CCS bit in the OCR
 							for (n = 0; n < 4; n++){
-    18aa:	df 06       	cpc	r13, r31
-    18ac:	c9 f7       	brne	.-14     	; 0x18a0 <mmc_init+0xb0>
-    18ae:	89 81       	ldd	r24, Y+1	; 0x01
+    189e:	df 06       	cpc	r13, r31
+    18a0:	c9 f7       	brne	.-14     	; 0x1894 <mmc_init+0xb0>
+    18a2:	89 81       	ldd	r24, Y+1	; 0x01
 								ocr[n] = spi_read_byte();
 							}
 							ty = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;  // SDv2
-    18b0:	86 fd       	sbrc	r24, 6
-    18b2:	2b c0       	rjmp	.+86     	; 0x190a <mmc_init+0x11a>
-    18b4:	68 94       	set
-    18b6:	ff 24       	eor	r15, r15
-    18b8:	f2 f8       	bld	r15, 2
-    18ba:	19 c0       	rjmp	.+50     	; 0x18ee <mmc_init+0xfe>
+    18a4:	86 fd       	sbrc	r24, 6
+    18a6:	2b c0       	rjmp	.+86     	; 0x18fe <mmc_init+0x11a>
+    18a8:	68 94       	set
+    18aa:	ff 24       	eor	r15, r15
+    18ac:	f2 f8       	bld	r15, 2
+    18ae:	19 c0       	rjmp	.+50     	; 0x18e2 <mmc_init+0xfe>
 							break;
 						}
 					}
 				}
 			} else {        									// SDv1 or MMCv3
 				if (mmc_send_cmd(ACMD41, 0) <= 1)   {
-    18bc:	40 e0       	ldi	r20, 0x00	; 0
-    18be:	50 e0       	ldi	r21, 0x00	; 0
-    18c0:	ba 01       	movw	r22, r20
-    18c2:	89 e2       	ldi	r24, 0x29	; 41
-    18c4:	5f df       	rcall	.-322    	; 0x1784 <mmc_send_cmd>
-    18c6:	82 30       	cpi	r24, 0x02	; 2
-    18c8:	20 f0       	brcs	.+8      	; 0x18d2 <mmc_init+0xe2>
-    18ca:	ff 24       	eor	r15, r15
+    18b0:	40 e0       	ldi	r20, 0x00	; 0
+    18b2:	50 e0       	ldi	r21, 0x00	; 0
+    18b4:	ba 01       	movw	r22, r20
+    18b6:	89 e2       	ldi	r24, 0x29	; 41
+    18b8:	5f df       	rcall	.-322    	; 0x1778 <mmc_send_cmd>
+    18ba:	82 30       	cpi	r24, 0x02	; 2
+    18bc:	20 f0       	brcs	.+8      	; 0x18c6 <mmc_init+0xe2>
+    18be:	ff 24       	eor	r15, r15
 					ty = CT_SD1;
 					cmd = ACMD41;  								// SDv1
 				} else {
 					ty = CT_MMC;
-    18cc:	f3 94       	inc	r15
-    18ce:	11 e0       	ldi	r17, 0x01	; 1
+    18c0:	f3 94       	inc	r15
+    18c2:	11 e0       	ldi	r17, 0x01	; 1
 					cmd = CMD1;    								// MMCv3
-    18d0:	04 c0       	rjmp	.+8      	; 0x18da <mmc_init+0xea>
+    18c4:	04 c0       	rjmp	.+8      	; 0x18ce <mmc_init+0xea>
 						}
 					}
 				}
 			} else {        									// SDv1 or MMCv3
 				if (mmc_send_cmd(ACMD41, 0) <= 1)   {
 					ty = CT_SD1;
-    18d2:	68 94       	set
-    18d4:	ff 24       	eor	r15, r15
-    18d6:	f1 f8       	bld	r15, 1
+    18c6:	68 94       	set
+    18c8:	ff 24       	eor	r15, r15
+    18ca:	f1 f8       	bld	r15, 1
 					cmd = ACMD41;  								// SDv1
-    18d8:	19 e2       	ldi	r17, 0x29	; 41
+    18cc:	19 e2       	ldi	r17, 0x29	; 41
 				} else {
 					ty = CT_MMC;
 					cmd = CMD1;    								// MMCv3
 				}
 				while (mmc_send_cmd(cmd, 0));    // Wait for leaving idle state
-    18da:	40 e0       	ldi	r20, 0x00	; 0
-    18dc:	50 e0       	ldi	r21, 0x00	; 0
-    18de:	ba 01       	movw	r22, r20
-    18e0:	81 2f       	mov	r24, r17
-    18e2:	50 df       	rcall	.-352    	; 0x1784 <mmc_send_cmd>
-    18e4:	81 11       	cpse	r24, r1
-    18e6:	f9 cf       	rjmp	.-14     	; 0x18da <mmc_init+0xea>
+    18ce:	40 e0       	ldi	r20, 0x00	; 0
+    18d0:	50 e0       	ldi	r21, 0x00	; 0
+    18d2:	ba 01       	movw	r22, r20
+    18d4:	81 2f       	mov	r24, r17
+    18d6:	50 df       	rcall	.-352    	; 0x1778 <mmc_send_cmd>
+    18d8:	81 11       	cpse	r24, r1
+    18da:	f9 cf       	rjmp	.-14     	; 0x18ce <mmc_init+0xea>
 			}
 			if(ty != (CT_SD2 | CT_BLOCK)) {
-    18e8:	fc e0       	ldi	r31, 0x0C	; 12
-    18ea:	ff 16       	cp	r15, r31
-    18ec:	91 f0       	breq	.+36     	; 0x1912 <mmc_init+0x122>
+    18dc:	fc e0       	ldi	r31, 0x0C	; 12
+    18de:	ff 16       	cp	r15, r31
+    18e0:	91 f0       	breq	.+36     	; 0x1906 <mmc_init+0x122>
 				while(mmc_send_cmd(CMD16, 512) != 0);
-    18ee:	40 e0       	ldi	r20, 0x00	; 0
-    18f0:	52 e0       	ldi	r21, 0x02	; 2
-    18f2:	60 e0       	ldi	r22, 0x00	; 0
-    18f4:	70 e0       	ldi	r23, 0x00	; 0
-    18f6:	80 e1       	ldi	r24, 0x10	; 16
-    18f8:	45 df       	rcall	.-374    	; 0x1784 <mmc_send_cmd>
-    18fa:	81 11       	cpse	r24, r1
-    18fc:	f8 cf       	rjmp	.-16     	; 0x18ee <mmc_init+0xfe>
-    18fe:	09 c0       	rjmp	.+18     	; 0x1912 <mmc_init+0x122>
-    1900:	01 50       	subi	r16, 0x01	; 1
+    18e2:	40 e0       	ldi	r20, 0x00	; 0
+    18e4:	52 e0       	ldi	r21, 0x02	; 2
+    18e6:	60 e0       	ldi	r22, 0x00	; 0
+    18e8:	70 e0       	ldi	r23, 0x00	; 0
+    18ea:	80 e1       	ldi	r24, 0x10	; 16
+    18ec:	45 df       	rcall	.-374    	; 0x1778 <mmc_send_cmd>
+    18ee:	81 11       	cpse	r24, r1
+    18f0:	f8 cf       	rjmp	.-16     	; 0x18e2 <mmc_init+0xfe>
+    18f2:	09 c0       	rjmp	.+18     	; 0x1906 <mmc_init+0x122>
+    18f4:	01 50       	subi	r16, 0x01	; 1
 			}
 		} else { j--; }
-    1902:	11 09       	sbc	r17, r1
+    18f6:	11 09       	sbc	r17, r1
 	}while(j>0);
-    1904:	09 f0       	breq	.+2      	; 0x1908 <mmc_init+0x118>
-    1906:	92 cf       	rjmp	.-220    	; 0x182c <mmc_init+0x3c>
-    1908:	04 c0       	rjmp	.+8      	; 0x1912 <mmc_init+0x122>
-    190a:	0f 2e       	mov	r0, r31
-    190c:	fc e0       	ldi	r31, 0x0C	; 12
-    190e:	ff 2e       	mov	r15, r31
-    1910:	f0 2d       	mov	r31, r0
+    18f8:	09 f0       	breq	.+2      	; 0x18fc <mmc_init+0x118>
+    18fa:	92 cf       	rjmp	.-220    	; 0x1820 <mmc_init+0x3c>
+    18fc:	04 c0       	rjmp	.+8      	; 0x1906 <mmc_init+0x122>
+    18fe:	0f 2e       	mov	r0, r31
+    1900:	fc e0       	ldi	r31, 0x0C	; 12
+    1902:	ff 2e       	mov	r15, r31
+    1904:	f0 2d       	mov	r31, r0
 
 	fat.card_type = ty;
-    1912:	0a e1       	ldi	r16, 0x1A	; 26
-    1914:	11 e0       	ldi	r17, 0x01	; 1
-    1916:	f8 01       	movw	r30, r16
-    1918:	f7 8a       	std	Z+23, r15	; 0x17
+    1906:	0a e1       	ldi	r16, 0x1A	; 26
+    1908:	11 e0       	ldi	r17, 0x01	; 1
+    190a:	f8 01       	movw	r30, r16
+    190c:	f7 8a       	std	Z+23, r15	; 0x17
 	mmc_disable();
-    191a:	31 df       	rcall	.-414    	; 0x177e <mmc_disable>
-    191c:	f8 01       	movw	r30, r16
+    190e:	31 df       	rcall	.-414    	; 0x1772 <mmc_disable>
+    1910:	f8 01       	movw	r30, r16
 
 	if( fat.card_type == 0 ){
-    191e:	87 89       	ldd	r24, Z+23	; 0x17
-    1920:	88 23       	and	r24, r24
-    1922:	29 f0       	breq	.+10     	; 0x192e <mmc_init+0x13e>
-    1924:	8d b1       	in	r24, 0x0d	; 13
+    1912:	87 89       	ldd	r24, Z+23	; 0x17
+    1914:	88 23       	and	r24, r24
+    1916:	29 f0       	breq	.+10     	; 0x1922 <mmc_init+0x13e>
+    1918:	8d b1       	in	r24, 0x0d	; 13
 #if (MMC_MAX_SPEED==TRUE)
 // *****************************************************************************
 static void spi_maxSpeed(){
 	
 	//SPI Bus auf max Geschwindigkeit
 	SPCR &= ~((1<<SPR0) | (1<<SPR1));
-    1926:	8c 7f       	andi	r24, 0xFC	; 252
-    1928:	8d b9       	out	0x0d, r24	; 13
-    192a:	70 9a       	sbi	0x0e, 0	; 14
+    191a:	8c 7f       	andi	r24, 0xFC	; 252
+    191c:	8d b9       	out	0x0d, r24	; 13
+    191e:	70 9a       	sbi	0x0e, 0	; 14
 	SPSR |= (1<<SPI2X);
-    192c:	81 e0       	ldi	r24, 0x01	; 1
+    1920:	81 e0       	ldi	r24, 0x01	; 1
 	}
 	#if (MMC_MAX_SPEED==TRUE)
 		spi_maxSpeed();
 	#endif
 
 	return TRUE;
-    192e:	0f 90       	pop	r0
+    1922:	0f 90       	pop	r0
 }
-    1930:	0f 90       	pop	r0
-    1932:	0f 90       	pop	r0
-    1934:	0f 90       	pop	r0
-    1936:	df 91       	pop	r29
-    1938:	cf 91       	pop	r28
-    193a:	1f 91       	pop	r17
-    193c:	0f 91       	pop	r16
-    193e:	ff 90       	pop	r15
-    1940:	df 90       	pop	r13
-    1942:	cf 90       	pop	r12
-    1944:	bf 90       	pop	r11
-    1946:	af 90       	pop	r10
-    1948:	08 95       	ret
+    1924:	0f 90       	pop	r0
+    1926:	0f 90       	pop	r0
+    1928:	0f 90       	pop	r0
+    192a:	df 91       	pop	r29
+    192c:	cf 91       	pop	r28
+    192e:	1f 91       	pop	r17
+    1930:	0f 91       	pop	r16
+    1932:	ff 90       	pop	r15
+    1934:	df 90       	pop	r13
+    1936:	cf 90       	pop	r12
+    1938:	bf 90       	pop	r11
+    193a:	af 90       	pop	r10
+    193c:	08 95       	ret
 
-0000194a <mmc_write_sector>:
-    194a:	ff 92       	push	r15
+0000193e <mmc_write_sector>:
+    193e:	ff 92       	push	r15
 
 
 // **********************************************************************************************************************************
 // Routine zum schreiben eines Blocks(512Byte) auf die MMC/SD-Karte
 // **********************************************************************************************************************************
 uint8_t mmc_write_sector (uint32_t addr,uint8_t *buffer){
-    194c:	0f 93       	push	r16
-    194e:	1f 93       	push	r17
-    1950:	cf 93       	push	r28
-    1952:	df 93       	push	r29
-    1954:	8a 01       	movw	r16, r20
+    1940:	0f 93       	push	r16
+    1942:	1f 93       	push	r17
+    1944:	cf 93       	push	r28
+    1946:	df 93       	push	r29
+    1948:	8a 01       	movw	r16, r20
 
 	uint8_t resp;
 	uint8_t retrys;
 	uint16_t count;
    	
 	if ( !(fat.card_type & CT_BLOCK) ){
-    1956:	20 91 31 01 	lds	r18, 0x0131	; 0x800131 <fat+0x17>
-    195a:	23 fd       	sbrc	r18, 3
-    195c:	09 c0       	rjmp	.+18     	; 0x1970 <mmc_write_sector+0x26>
+    194a:	20 91 31 01 	lds	r18, 0x0131	; 0x800131 <fat+0x17>
+    194e:	23 fd       	sbrc	r18, 3
+    1950:	09 c0       	rjmp	.+18     	; 0x1964 <mmc_write_sector+0x26>
 		addr *= 512;				// Convert to byte address if needed 
-    195e:	05 2e       	mov	r0, r21
-    1960:	59 e0       	ldi	r21, 0x09	; 9
-    1962:	66 0f       	add	r22, r22
-    1964:	77 1f       	adc	r23, r23
-    1966:	88 1f       	adc	r24, r24
-    1968:	99 1f       	adc	r25, r25
-    196a:	5a 95       	dec	r21
-    196c:	d1 f7       	brne	.-12     	; 0x1962 <mmc_write_sector+0x18>
-    196e:	50 2d       	mov	r21, r0
+    1952:	05 2e       	mov	r0, r21
+    1954:	59 e0       	ldi	r21, 0x09	; 9
+    1956:	66 0f       	add	r22, r22
+    1958:	77 1f       	adc	r23, r23
+    195a:	88 1f       	adc	r24, r24
+    195c:	99 1f       	adc	r25, r25
+    195e:	5a 95       	dec	r21
+    1960:	d1 f7       	brne	.-12     	; 0x1956 <mmc_write_sector+0x18>
+    1962:	50 2d       	mov	r21, r0
 	}
 	
 	if ( mmc_send_cmd(CMD24, addr) != 0){ 	// enables card		
-    1970:	ab 01       	movw	r20, r22
-    1972:	bc 01       	movw	r22, r24
-    1974:	88 e1       	ldi	r24, 0x18	; 24
-    1976:	06 df       	rcall	.-500    	; 0x1784 <mmc_send_cmd>
-    1978:	f8 2e       	mov	r15, r24
-    197a:	81 11       	cpse	r24, r1
-    197c:	1e c0       	rjmp	.+60     	; 0x19ba <mmc_write_sector+0x70>
+    1964:	ab 01       	movw	r20, r22
+    1966:	bc 01       	movw	r22, r24
+    1968:	88 e1       	ldi	r24, 0x18	; 24
+    196a:	06 df       	rcall	.-500    	; 0x1778 <mmc_send_cmd>
+    196c:	f8 2e       	mov	r15, r24
+    196e:	81 11       	cpse	r24, r1
+    1970:	1e c0       	rjmp	.+60     	; 0x19ae <mmc_write_sector+0x70>
 static uint8_t mmc_wait_ready (void){
 
 
 	while(1)
 	{
 		if(	 spi_read_byte() == 0xFF ) return TRUE;
-    197e:	f9 de       	rcall	.-526    	; 0x1772 <spi_read_byte>
-    1980:	8f 3f       	cpi	r24, 0xFF	; 255
-    1982:	e9 f7       	brne	.-6      	; 0x197e <mmc_write_sector+0x34>
+    1972:	f9 de       	rcall	.-526    	; 0x1766 <spi_read_byte>
+    1974:	8f 3f       	cpi	r24, 0xFF	; 255
+    1976:	e9 f7       	brne	.-6      	; 0x1972 <mmc_write_sector+0x34>
 
 	if ( FALSE == mmc_wait_ready() ){		
 		return FALSE;
 	}
 
 	spi_write_byte(0xFE);			// Xmit data token 
-    1984:	8e ef       	ldi	r24, 0xFE	; 254
-    1986:	f1 de       	rcall	.-542    	; 0x176a <spi_write_byte>
-    1988:	e8 01       	movw	r28, r16
-    198a:	1e 5f       	subi	r17, 0xFE	; 254
+    1978:	8e ef       	ldi	r24, 0xFE	; 254
+    197a:	f1 de       	rcall	.-542    	; 0x175e <spi_write_byte>
+    197c:	e8 01       	movw	r28, r16
+    197e:	1e 5f       	subi	r17, 0xFE	; 254
 	
 	count = 512;
 	do {							// Xmit the 512 byte data block to MMC 
 		spi_write_byte(*buffer++);		
-    198c:	89 91       	ld	r24, Y+
-    198e:	ed de       	rcall	.-550    	; 0x176a <spi_write_byte>
-    1990:	c0 17       	cp	r28, r16
+    1980:	89 91       	ld	r24, Y+
+    1982:	ed de       	rcall	.-550    	; 0x175e <spi_write_byte>
+    1984:	c0 17       	cp	r28, r16
 	} while (--count);
-    1992:	d1 07       	cpc	r29, r17
-    1994:	d9 f7       	brne	.-10     	; 0x198c <mmc_write_sector+0x42>
+    1986:	d1 07       	cpc	r29, r17
+    1988:	d9 f7       	brne	.-10     	; 0x1980 <mmc_write_sector+0x42>
 	
 	spi_write_byte(0xFF);			// CRC (Dummy) 
-    1996:	8f ef       	ldi	r24, 0xFF	; 255
-    1998:	e8 de       	rcall	.-560    	; 0x176a <spi_write_byte>
+    198a:	8f ef       	ldi	r24, 0xFF	; 255
+    198c:	e8 de       	rcall	.-560    	; 0x175e <spi_write_byte>
 	spi_write_byte(0xFF);
-    199a:	8f ef       	ldi	r24, 0xFF	; 255
-    199c:	e6 de       	rcall	.-564    	; 0x176a <spi_write_byte>
-    199e:	c4 e1       	ldi	r28, 0x14	; 20
+    198e:	8f ef       	ldi	r24, 0xFF	; 255
+    1990:	e6 de       	rcall	.-564    	; 0x175e <spi_write_byte>
+    1992:	c4 e1       	ldi	r28, 0x14	; 20
 	
 	retrys = 20;			
-    19a0:	e8 de       	rcall	.-560    	; 0x1772 <spi_read_byte>
+    1994:	e8 de       	rcall	.-560    	; 0x1766 <spi_read_byte>
 	do{
 		resp = spi_read_byte();		// Reveive data response, 20 retrys if not acepted
-    19a2:	8f 71       	andi	r24, 0x1F	; 31
-    19a4:	85 30       	cpi	r24, 0x05	; 5
+    1996:	8f 71       	andi	r24, 0x1F	; 31
+    1998:	85 30       	cpi	r24, 0x05	; 5
 	}while( (resp & 0x1F) != 0x05 && --retrys);
-    19a6:	19 f0       	breq	.+6      	; 0x19ae <mmc_write_sector+0x64>
-    19a8:	c1 50       	subi	r28, 0x01	; 1
-    19aa:	d1 f7       	brne	.-12     	; 0x19a0 <mmc_write_sector+0x56>
-    19ac:	07 c0       	rjmp	.+14     	; 0x19bc <mmc_write_sector+0x72>
-    19ae:	cc 23       	and	r28, r28
+    199a:	19 f0       	breq	.+6      	; 0x19a2 <mmc_write_sector+0x64>
+    199c:	c1 50       	subi	r28, 0x01	; 1
+    199e:	d1 f7       	brne	.-12     	; 0x1994 <mmc_write_sector+0x56>
+    19a0:	07 c0       	rjmp	.+14     	; 0x19b0 <mmc_write_sector+0x72>
+    19a2:	cc 23       	and	r28, r28
 	
 	if ( retrys == 0){				// If not accepted, return with error 		
-    19b0:	29 f0       	breq	.+10     	; 0x19bc <mmc_write_sector+0x72>
-    19b2:	e5 de       	rcall	.-566    	; 0x177e <mmc_disable>
+    19a4:	29 f0       	breq	.+10     	; 0x19b0 <mmc_write_sector+0x72>
+    19a6:	e5 de       	rcall	.-566    	; 0x1772 <mmc_disable>
 		return FALSE;
 	}
 	
 	mmc_disable();
-    19b4:	ff 24       	eor	r15, r15
-    19b6:	f3 94       	inc	r15
+    19a8:	ff 24       	eor	r15, r15
+    19aa:	f3 94       	inc	r15
 
 	return TRUE;
-    19b8:	01 c0       	rjmp	.+2      	; 0x19bc <mmc_write_sector+0x72>
-    19ba:	f1 2c       	mov	r15, r1
-    19bc:	8f 2d       	mov	r24, r15
+    19ac:	01 c0       	rjmp	.+2      	; 0x19b0 <mmc_write_sector+0x72>
+    19ae:	f1 2c       	mov	r15, r1
+    19b0:	8f 2d       	mov	r24, r15
 	if ( !(fat.card_type & CT_BLOCK) ){
 		addr *= 512;				// Convert to byte address if needed 
 	}
 	
 	if ( mmc_send_cmd(CMD24, addr) != 0){ 	// enables card		
 		return FALSE;
-    19be:	df 91       	pop	r29
+    19b2:	df 91       	pop	r29
 	}
 	
 	mmc_disable();
 
 	return TRUE;
 }
-    19c0:	cf 91       	pop	r28
-    19c2:	1f 91       	pop	r17
-    19c4:	0f 91       	pop	r16
-    19c6:	ff 90       	pop	r15
-    19c8:	08 95       	ret
+    19b4:	cf 91       	pop	r28
+    19b6:	1f 91       	pop	r17
+    19b8:	0f 91       	pop	r16
+    19ba:	ff 90       	pop	r15
+    19bc:	08 95       	ret
 
-000019ca <mmc_read_sector>:
-    19ca:	0f 93       	push	r16
-    19cc:	1f 93       	push	r17
+000019be <mmc_read_sector>:
+    19be:	0f 93       	push	r16
+    19c0:	1f 93       	push	r17
 
 
 // **********************************************************************************************************************************
 // Routine zum lesen eines Blocks(512Byte) von der MMC/SD-Karte
 // **********************************************************************************************************************************
 uint8_t mmc_read_sector (uint32_t addr,uint8_t *buffer){
-    19ce:	cf 93       	push	r28
-    19d0:	df 93       	push	r29
-    19d2:	8a 01       	movw	r16, r20
+    19c2:	cf 93       	push	r28
+    19c4:	df 93       	push	r29
+    19c6:	8a 01       	movw	r16, r20
 
 	uint8_t token;
 	uint16_t count;
 	
 	if ( !(fat.card_type & CT_BLOCK) ) addr *= 512;	// Convert to byte address if needed
-    19d4:	20 91 31 01 	lds	r18, 0x0131	; 0x800131 <fat+0x17>
-    19d8:	23 fd       	sbrc	r18, 3
-    19da:	09 c0       	rjmp	.+18     	; 0x19ee <mmc_read_sector+0x24>
-    19dc:	05 2e       	mov	r0, r21
-    19de:	59 e0       	ldi	r21, 0x09	; 9
-    19e0:	66 0f       	add	r22, r22
-    19e2:	77 1f       	adc	r23, r23
-    19e4:	88 1f       	adc	r24, r24
-    19e6:	99 1f       	adc	r25, r25
-    19e8:	5a 95       	dec	r21
-    19ea:	d1 f7       	brne	.-12     	; 0x19e0 <mmc_read_sector+0x16>
-    19ec:	50 2d       	mov	r21, r0
+    19c8:	20 91 31 01 	lds	r18, 0x0131	; 0x800131 <fat+0x17>
+    19cc:	23 fd       	sbrc	r18, 3
+    19ce:	09 c0       	rjmp	.+18     	; 0x19e2 <mmc_read_sector+0x24>
+    19d0:	05 2e       	mov	r0, r21
+    19d2:	59 e0       	ldi	r21, 0x09	; 9
+    19d4:	66 0f       	add	r22, r22
+    19d6:	77 1f       	adc	r23, r23
+    19d8:	88 1f       	adc	r24, r24
+    19da:	99 1f       	adc	r25, r25
+    19dc:	5a 95       	dec	r21
+    19de:	d1 f7       	brne	.-12     	; 0x19d4 <mmc_read_sector+0x16>
+    19e0:	50 2d       	mov	r21, r0
 
 	if ( mmc_send_cmd(CMD17, addr) != 0 ){
-    19ee:	ab 01       	movw	r20, r22
-    19f0:	bc 01       	movw	r22, r24
-    19f2:	81 e1       	ldi	r24, 0x11	; 17
-    19f4:	c7 de       	rcall	.-626    	; 0x1784 <mmc_send_cmd>
-    19f6:	c8 2f       	mov	r28, r24
-    19f8:	81 11       	cpse	r24, r1
-    19fa:	11 c0       	rjmp	.+34     	; 0x1a1e <mmc_read_sector+0x54>
+    19e2:	ab 01       	movw	r20, r22
+    19e4:	bc 01       	movw	r22, r24
+    19e6:	81 e1       	ldi	r24, 0x11	; 17
+    19e8:	c7 de       	rcall	.-626    	; 0x1778 <mmc_send_cmd>
+    19ea:	c8 2f       	mov	r28, r24
+    19ec:	81 11       	cpse	r24, r1
+    19ee:	11 c0       	rjmp	.+34     	; 0x1a12 <mmc_read_sector+0x54>
 		return FALSE;	
 	}
 
 	do {							// Wait for data packet in timeout of 200ms 
 		token = spi_read_byte();
-    19fc:	ba de       	rcall	.-652    	; 0x1772 <spi_read_byte>
-    19fe:	8f 3f       	cpi	r24, 0xFF	; 255
+    19f0:	ba de       	rcall	.-652    	; 0x1766 <spi_read_byte>
+    19f2:	8f 3f       	cpi	r24, 0xFF	; 255
 	} while (token == 0xFF);
-    1a00:	e9 f3       	breq	.-6      	; 0x19fc <mmc_read_sector+0x32>
-    1a02:	8e 3f       	cpi	r24, 0xFE	; 254
+    19f4:	e9 f3       	breq	.-6      	; 0x19f0 <mmc_read_sector+0x32>
+    19f6:	8e 3f       	cpi	r24, 0xFE	; 254
 	
 	if(token != 0xFE){
-    1a04:	69 f4       	brne	.+26     	; 0x1a20 <mmc_read_sector+0x56>
-    1a06:	e8 01       	movw	r28, r16
-    1a08:	1e 5f       	subi	r17, 0xFE	; 254
+    19f8:	69 f4       	brne	.+26     	; 0x1a14 <mmc_read_sector+0x56>
+    19fa:	e8 01       	movw	r28, r16
+    19fc:	1e 5f       	subi	r17, 0xFE	; 254
 		return FALSE;				// If not valid data token, retutn with error 
 	}
 
 	count = 512;
 	do {							// Receive the data block into buffer 
 		*buffer++ = spi_read_byte();
-    1a0a:	b3 de       	rcall	.-666    	; 0x1772 <spi_read_byte>
-    1a0c:	89 93       	st	Y+, r24
-    1a0e:	c0 17       	cp	r28, r16
+    19fe:	b3 de       	rcall	.-666    	; 0x1766 <spi_read_byte>
+    1a00:	89 93       	st	Y+, r24
+    1a02:	c0 17       	cp	r28, r16
 	} while (--count);
-    1a10:	d1 07       	cpc	r29, r17
+    1a04:	d1 07       	cpc	r29, r17
 
 	spi_read_byte();				// Discard CRC 
-    1a12:	d9 f7       	brne	.-10     	; 0x1a0a <mmc_read_sector+0x40>
-    1a14:	ae de       	rcall	.-676    	; 0x1772 <spi_read_byte>
+    1a06:	d9 f7       	brne	.-10     	; 0x19fe <mmc_read_sector+0x40>
+    1a08:	ae de       	rcall	.-676    	; 0x1766 <spi_read_byte>
 	spi_read_byte();
-    1a16:	ad de       	rcall	.-678    	; 0x1772 <spi_read_byte>
-    1a18:	b2 de       	rcall	.-668    	; 0x177e <mmc_disable>
+    1a0a:	ad de       	rcall	.-678    	; 0x1766 <spi_read_byte>
+    1a0c:	b2 de       	rcall	.-668    	; 0x1772 <mmc_disable>
 
 	mmc_disable();
-    1a1a:	c1 e0       	ldi	r28, 0x01	; 1
-    1a1c:	01 c0       	rjmp	.+2      	; 0x1a20 <mmc_read_sector+0x56>
+    1a0e:	c1 e0       	ldi	r28, 0x01	; 1
+    1a10:	01 c0       	rjmp	.+2      	; 0x1a14 <mmc_read_sector+0x56>
 
 	return TRUE;					// Return with success 
-    1a1e:	c0 e0       	ldi	r28, 0x00	; 0
-    1a20:	8c 2f       	mov	r24, r28
+    1a12:	c0 e0       	ldi	r28, 0x00	; 0
+    1a14:	8c 2f       	mov	r24, r28
 	uint16_t count;
 	
 	if ( !(fat.card_type & CT_BLOCK) ) addr *= 512;	// Convert to byte address if needed
 
 	if ( mmc_send_cmd(CMD17, addr) != 0 ){
 		return FALSE;	
-    1a22:	df 91       	pop	r29
+    1a16:	df 91       	pop	r29
 	spi_read_byte();
 
 	mmc_disable();
 
 	return TRUE;					// Return with success 
 }
-    1a24:	cf 91       	pop	r28
-    1a26:	1f 91       	pop	r17
-    1a28:	0f 91       	pop	r16
-    1a2a:	08 95       	ret
+    1a18:	cf 91       	pop	r28
+    1a1a:	1f 91       	pop	r17
+    1a1c:	0f 91       	pop	r16
+    1a1e:	08 95       	ret
 
-00001a2c <__udivmodsi4>:
-    1a2c:	a1 e2       	ldi	r26, 0x21	; 33
-    1a2e:	1a 2e       	mov	r1, r26
-    1a30:	aa 1b       	sub	r26, r26
-    1a32:	bb 1b       	sub	r27, r27
-    1a34:	fd 01       	movw	r30, r26
-    1a36:	0d c0       	rjmp	.+26     	; 0x1a52 <__udivmodsi4_ep>
+00001a20 <__udivmodsi4>:
+    1a20:	a1 e2       	ldi	r26, 0x21	; 33
+    1a22:	1a 2e       	mov	r1, r26
+    1a24:	aa 1b       	sub	r26, r26
+    1a26:	bb 1b       	sub	r27, r27
+    1a28:	fd 01       	movw	r30, r26
+    1a2a:	0d c0       	rjmp	.+26     	; 0x1a46 <__udivmodsi4_ep>
 
-00001a38 <__udivmodsi4_loop>:
-    1a38:	aa 1f       	adc	r26, r26
-    1a3a:	bb 1f       	adc	r27, r27
-    1a3c:	ee 1f       	adc	r30, r30
-    1a3e:	ff 1f       	adc	r31, r31
-    1a40:	a2 17       	cp	r26, r18
-    1a42:	b3 07       	cpc	r27, r19
-    1a44:	e4 07       	cpc	r30, r20
-    1a46:	f5 07       	cpc	r31, r21
-    1a48:	20 f0       	brcs	.+8      	; 0x1a52 <__udivmodsi4_ep>
-    1a4a:	a2 1b       	sub	r26, r18
-    1a4c:	b3 0b       	sbc	r27, r19
-    1a4e:	e4 0b       	sbc	r30, r20
-    1a50:	f5 0b       	sbc	r31, r21
+00001a2c <__udivmodsi4_loop>:
+    1a2c:	aa 1f       	adc	r26, r26
+    1a2e:	bb 1f       	adc	r27, r27
+    1a30:	ee 1f       	adc	r30, r30
+    1a32:	ff 1f       	adc	r31, r31
+    1a34:	a2 17       	cp	r26, r18
+    1a36:	b3 07       	cpc	r27, r19
+    1a38:	e4 07       	cpc	r30, r20
+    1a3a:	f5 07       	cpc	r31, r21
+    1a3c:	20 f0       	brcs	.+8      	; 0x1a46 <__udivmodsi4_ep>
+    1a3e:	a2 1b       	sub	r26, r18
+    1a40:	b3 0b       	sbc	r27, r19
+    1a42:	e4 0b       	sbc	r30, r20
+    1a44:	f5 0b       	sbc	r31, r21
 
-00001a52 <__udivmodsi4_ep>:
-    1a52:	66 1f       	adc	r22, r22
-    1a54:	77 1f       	adc	r23, r23
-    1a56:	88 1f       	adc	r24, r24
-    1a58:	99 1f       	adc	r25, r25
-    1a5a:	1a 94       	dec	r1
-    1a5c:	69 f7       	brne	.-38     	; 0x1a38 <__udivmodsi4_loop>
-    1a5e:	60 95       	com	r22
-    1a60:	70 95       	com	r23
-    1a62:	80 95       	com	r24
-    1a64:	90 95       	com	r25
-    1a66:	9b 01       	movw	r18, r22
-    1a68:	ac 01       	movw	r20, r24
-    1a6a:	bd 01       	movw	r22, r26
-    1a6c:	cf 01       	movw	r24, r30
-    1a6e:	08 95       	ret
+00001a46 <__udivmodsi4_ep>:
+    1a46:	66 1f       	adc	r22, r22
+    1a48:	77 1f       	adc	r23, r23
+    1a4a:	88 1f       	adc	r24, r24
+    1a4c:	99 1f       	adc	r25, r25
+    1a4e:	1a 94       	dec	r1
+    1a50:	69 f7       	brne	.-38     	; 0x1a2c <__udivmodsi4_loop>
+    1a52:	60 95       	com	r22
+    1a54:	70 95       	com	r23
+    1a56:	80 95       	com	r24
+    1a58:	90 95       	com	r25
+    1a5a:	9b 01       	movw	r18, r22
+    1a5c:	ac 01       	movw	r20, r24
+    1a5e:	bd 01       	movw	r22, r26
+    1a60:	cf 01       	movw	r24, r30
+    1a62:	08 95       	ret
 
-00001a70 <__muluhisi3>:
-    1a70:	09 d0       	rcall	.+18     	; 0x1a84 <__umulhisi3>
-    1a72:	a5 9f       	mul	r26, r21
-    1a74:	90 0d       	add	r25, r0
-    1a76:	b4 9f       	mul	r27, r20
-    1a78:	90 0d       	add	r25, r0
-    1a7a:	a4 9f       	mul	r26, r20
-    1a7c:	80 0d       	add	r24, r0
-    1a7e:	91 1d       	adc	r25, r1
-    1a80:	11 24       	eor	r1, r1
-    1a82:	08 95       	ret
+00001a64 <__muluhisi3>:
+    1a64:	09 d0       	rcall	.+18     	; 0x1a78 <__umulhisi3>
+    1a66:	a5 9f       	mul	r26, r21
+    1a68:	90 0d       	add	r25, r0
+    1a6a:	b4 9f       	mul	r27, r20
+    1a6c:	90 0d       	add	r25, r0
+    1a6e:	a4 9f       	mul	r26, r20
+    1a70:	80 0d       	add	r24, r0
+    1a72:	91 1d       	adc	r25, r1
+    1a74:	11 24       	eor	r1, r1
+    1a76:	08 95       	ret
 
-00001a84 <__umulhisi3>:
-    1a84:	a2 9f       	mul	r26, r18
-    1a86:	b0 01       	movw	r22, r0
-    1a88:	b3 9f       	mul	r27, r19
-    1a8a:	c0 01       	movw	r24, r0
-    1a8c:	a3 9f       	mul	r26, r19
-    1a8e:	70 0d       	add	r23, r0
-    1a90:	81 1d       	adc	r24, r1
-    1a92:	11 24       	eor	r1, r1
-    1a94:	91 1d       	adc	r25, r1
-    1a96:	b2 9f       	mul	r27, r18
-    1a98:	70 0d       	add	r23, r0
-    1a9a:	81 1d       	adc	r24, r1
-    1a9c:	11 24       	eor	r1, r1
-    1a9e:	91 1d       	adc	r25, r1
-    1aa0:	08 95       	ret
+00001a78 <__umulhisi3>:
+    1a78:	a2 9f       	mul	r26, r18
+    1a7a:	b0 01       	movw	r22, r0
+    1a7c:	b3 9f       	mul	r27, r19
+    1a7e:	c0 01       	movw	r24, r0
+    1a80:	a3 9f       	mul	r26, r19
+    1a82:	70 0d       	add	r23, r0
+    1a84:	81 1d       	adc	r24, r1
+    1a86:	11 24       	eor	r1, r1
+    1a88:	91 1d       	adc	r25, r1
+    1a8a:	b2 9f       	mul	r27, r18
+    1a8c:	70 0d       	add	r23, r0
+    1a8e:	81 1d       	adc	r24, r1
+    1a90:	11 24       	eor	r1, r1
+    1a92:	91 1d       	adc	r25, r1
+    1a94:	08 95       	ret
 
-00001aa2 <toupper>:
-    1aa2:	91 11       	cpse	r25, r1
+00001a96 <toupper>:
+    1a96:	91 11       	cpse	r25, r1
+    1a98:	08 95       	ret
+    1a9a:	81 56       	subi	r24, 0x61	; 97
+    1a9c:	8a 51       	subi	r24, 0x1A	; 26
+    1a9e:	08 f4       	brcc	.+2      	; 0x1aa2 <toupper+0xc>
+    1aa0:	80 52       	subi	r24, 0x20	; 32
+    1aa2:	85 58       	subi	r24, 0x85	; 133
     1aa4:	08 95       	ret
-    1aa6:	81 56       	subi	r24, 0x61	; 97
-    1aa8:	8a 51       	subi	r24, 0x1A	; 26
-    1aaa:	08 f4       	brcc	.+2      	; 0x1aae <toupper+0xc>
-    1aac:	80 52       	subi	r24, 0x20	; 32
-    1aae:	85 58       	subi	r24, 0x85	; 133
-    1ab0:	08 95       	ret
 
-00001ab2 <strcmp>:
-    1ab2:	fb 01       	movw	r30, r22
-    1ab4:	dc 01       	movw	r26, r24
-    1ab6:	8d 91       	ld	r24, X+
-    1ab8:	01 90       	ld	r0, Z+
-    1aba:	80 19       	sub	r24, r0
-    1abc:	01 10       	cpse	r0, r1
-    1abe:	d9 f3       	breq	.-10     	; 0x1ab6 <strcmp+0x4>
-    1ac0:	99 0b       	sbc	r25, r25
-    1ac2:	08 95       	ret
+00001aa6 <strcmp>:
+    1aa6:	fb 01       	movw	r30, r22
+    1aa8:	dc 01       	movw	r26, r24
+    1aaa:	8d 91       	ld	r24, X+
+    1aac:	01 90       	ld	r0, Z+
+    1aae:	80 19       	sub	r24, r0
+    1ab0:	01 10       	cpse	r0, r1
+    1ab2:	d9 f3       	breq	.-10     	; 0x1aaa <strcmp+0x4>
+    1ab4:	99 0b       	sbc	r25, r25
+    1ab6:	08 95       	ret
 
-00001ac4 <_exit>:
-    1ac4:	f8 94       	cli
+00001ab8 <_exit>:
+    1ab8:	f8 94       	cli
 
-00001ac6 <__stop_program>:
-    1ac6:	ff cf       	rjmp	.-2      	; 0x1ac6 <__stop_program>
+00001aba <__stop_program>:
+    1aba:	ff cf       	rjmp	.-2      	; 0x1aba <__stop_program>
