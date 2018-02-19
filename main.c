@@ -21,6 +21,8 @@
 
 #include "FastSPI.h"
 
+#define brightness		2  // power of two. 1:100% 2:50% 3:25% 4:12,5% ...
+
 
 typedef struct
 {
@@ -91,9 +93,9 @@ int main(void)
 				{
 					for (uint16_t j = 0; j < LED_count; j++)
 					{
-						data_array[j].B = ffread() >> 3;
-						data_array[j].G = ffread() >> 3;
-						data_array[j].R = ffread() >> 3;
+						data_array[j].B = ffread() >> brightness;
+						data_array[j].G = ffread() >> brightness;
+						data_array[j].R = ffread() >> brightness;
 						if ((data_array[j].R == 0) && (data_array[j].G == 0) && (data_array[j].B == 0))
 							LED_on;
 					}
