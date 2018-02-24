@@ -23,8 +23,8 @@
 
 #include "FastSPI.h"
 
-#define key_mod		(PINA & (1 << PA0))
-#define key_ok		(PINA & (1 <  PA1))
+#define key_mod		(!(PINA & (1 << PA4)))
+#define key_ok		(!(PINA & (1 << PA3)))
 
 #define LED_write	FastSPI_write((uint8_t *) data_array, LED_count*3)
 
@@ -45,7 +45,7 @@ color_t data_array[LED_count];
 uint32_t line_count = 0;  // 
 uint8_t brightness = 1;  // brightness as 1 over the power of two = 0:100% 2:50% 3:25% 4:12.5%
 uint8_t line_speed = 0;  // additional delay per line in ms
-uint8_t file_index = 0;  // index of file to be played
+uint8_t file_index = 1;  // index of file to be played
 bool menu_active = false;
 
 void read_block(uint16_t count, char* buf)
@@ -78,21 +78,23 @@ void LED_sub_color(enum color c)
 
 void LED_seggraph(uint8_t segments)
 {
-	if (segments >= 19)
+	if (segments > 30)
 		return;
+	
+	LED_sub_color(black);
 	
 	uint16_t i = 0;
 	for (uint8_t x = 0; x < segments; x++)
 	{
-		for (uint8_t y = 0; y < 10; y++)
+		for (uint8_t y = 0; y < 5; y++)
 		{
-			data_array[i].R = 30;
-			data_array[i].G = 30;
-			data_array[i].B = 30;
+			data_array[i].R = 10;
+			data_array[i].G = 10;
+			data_array[i].B = 10;
 			i++;
 		}
 		
-		for (uint8_t y = 0; y < 5; y++)
+		for (uint8_t y = 0; y < 3; y++)
 		{
 			data_array[i].R = 0;
 			data_array[i].G = 0;
@@ -100,9 +102,9 @@ void LED_seggraph(uint8_t segments)
 			i++;
 		}
 		
-		if ((x%5) == 0)
+		if (((x+1)%4) == 0)
 		{
-			for (uint8_t y = 0; y < 5; y++)
+			for (uint8_t y = 0; y < 7; y++)
 			{
 				data_array[i].R = 0;
 				data_array[i].G = 0;
@@ -139,7 +141,7 @@ void LED_menu_brightness(bool active)
 
 void LED_menu_speed(bool active)
 {
-	LED_seggraph(line_speed/10);
+	LED_seggraph(line_speed + 1);
 	
 	if (active)
 		LED_sub_color(white);
@@ -164,7 +166,8 @@ bool file_select()
 	
 	ffclose();
 	
-	sprintf(buffer, "%d_pixelstick.bmp", file_index);
+	sprintf(buffer, "%02d_pixelstick.bmp", file_index);
+//	strcpy(buffer, "1_pixelstick.bmp");
 	
 	if (ffileExsists((uint8_t*) buffer) == TRUE)  // check if requested file is present
 	{
@@ -216,8 +219,8 @@ void file_display()
 
 void InitSYS()
 {
-	DDRA |= (1 << PA0);
 	DDRD |= (1 << PD5);
+	PORTA |= (1 << PA3) | (1 << PA4);
 	
 	LED_sub_color(black);
 	LED_write;
@@ -237,7 +240,7 @@ int main(void)
 	{
 		switch (state)
 		{
-			st_wait_start:
+			case st_wait_start:
 				if key_mod
 				{
 					state = st_menu_file;
@@ -247,12 +250,15 @@ int main(void)
 				}
 				else if key_ok
 				{
-					file_select();
-					file_display();
+					_delay_ms(1000);
+					if (file_select())
+						file_display();
+					LED_sub_color(black);
+					LED_write;
 				}
 			break;
 			
-			st_menu_file:
+			case st_menu_file:
 				if (menu_active)
 				{
 					if (key_ok)
@@ -263,10 +269,10 @@ int main(void)
 					}
 					else if (key_mod)
 					{
-						if (file_index < 18)
-						file_index++;
+						if (file_index < 30)
+							file_index++;
 						else
-						file_index = 0;
+							file_index = 1;
 					
 						LED_menu_file(true);
 						_delay_ms(200);
@@ -289,7 +295,7 @@ int main(void)
 				}
 			break;
 			
-			st_menu_brightness:
+			case st_menu_brightness:
 				if (menu_active)
 				{
 					if (key_ok)
@@ -300,10 +306,10 @@ int main(void)
 					}
 					else if (key_mod)
 					{
-						if (file_index < 4)
-							file_index++;
+						if (brightness < 5)
+							brightness++;
 						else
-							file_index = 1;
+							brightness = 1;
 					
 						LED_menu_brightness(true);
 						_delay_ms(200);
@@ -326,7 +332,7 @@ int main(void)
 				}
 			break;
 			
-			st_menu_speed:
+			case st_menu_speed:
 				if (menu_active)
 				{
 					if (key_ok)
@@ -337,10 +343,10 @@ int main(void)
 					}
 					else if (key_mod)
 					{
-						if (file_index < 180)
-							file_index+= 10;
+						if (line_speed < 30)
+							line_speed++;
 						else
-							file_index = 0;
+							line_speed = 0;
 					
 						LED_menu_speed(true);
 						_delay_ms(200);
@@ -356,24 +362,26 @@ int main(void)
 					}
 					else if (key_mod)
 					{
-						state = st_menu_speed;
+						state = st_menu_back;
 						LED_menu_back();
 						_delay_ms(200);
 					}
 				}
 			break;
 			
-			st_menu_back:
+			case st_menu_back:
 				if (key_ok)
 				{
 					state = st_wait_start;
 					LED_sub_color(black);
+					LED_write;
 					_delay_ms(200);
 				}
 				else if (key_mod)
 				{
 					state = st_menu_file;
 					LED_menu_file(false);
+					_delay_ms(200);
 				}
 			break;
 			
