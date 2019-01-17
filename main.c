@@ -36,7 +36,7 @@ typedef struct
 	uint8_t B;
 } color_t;
 
-enum estate {st_wait_start, st_menu_file, st_menu_brightness, st_menu_speed, st_menu_back}
+enum estate {st_wait_start, st_menu_file, st_menu_brightness, st_menu_speed, st_menu_effect, st_menu_loop, st_menu_back}
 	state = st_wait_start;
 
 enum color {red, green, blue, yellow, magenta, cyan, white, black};
@@ -46,6 +46,9 @@ uint32_t line_count = 0;  //
 uint8_t brightness = 1;  // brightness as 1 over the power of two = 0:100% 2:50% 3:25% 4:12.5%
 uint8_t line_speed = 0;  // additional delay per line in ms
 uint8_t file_index = 1;  // index of file to be played
+uint8_t effect = 0;      // 0 = file playback; 1 = rainbow effect
+uint8_t loop = 0;        // loop image playback?
+uint32_t start_offset;
 bool menu_active = false;
 
 void read_block(uint16_t count, char* buf)
@@ -129,7 +132,7 @@ void LED_menu_file(bool active)
 
 void LED_menu_brightness(bool active)
 {
-	LED_seggraph(brightness);
+	LED_seggraph(brightness+1);
 	
 	if (active)
 		LED_sub_color(white);
@@ -151,6 +154,30 @@ void LED_menu_speed(bool active)
 	LED_write;
 }
 
+void LED_menu_effect(bool active)
+{
+	LED_seggraph(effect + 1);
+	
+	if (active)
+		LED_sub_color(white);
+	else
+		LED_sub_color(magenta);
+	
+	LED_write;
+}
+
+void LED_menu_loop(bool active)
+{
+	LED_seggraph(loop + 1);
+	
+	if (active)
+		LED_sub_color(white);
+	else
+		LED_sub_color(cyan);
+	
+	LED_write;
+}
+
 void LED_menu_back()
 {
 	LED_seggraph(1);
@@ -162,7 +189,7 @@ void LED_menu_back()
 bool file_select()
 {
 	char buffer[20], comp[20];
-	uint32_t start_offset, width;
+	uint32_t width;
 	
 	ffclose();
 	
@@ -203,7 +230,8 @@ void delay_ms(uint16_t t)
 
 void file_display()
 {
-	for (uint32_t i = 0; i < line_count; i++)
+	uint32_t i = 0;
+	while (i < line_count)
 	{
 		for (uint16_t j = 0; j < LED_count; j++)
 		{
@@ -214,6 +242,93 @@ void file_display()
 					
 		FastSPI_write((uint8_t *) data_array, LED_count*3);
 		delay_ms(line_speed);
+		
+		if (key_ok)
+			return;
+			
+		i++;
+		if (i >= line_count)
+		{
+			if (loop)
+			{
+				i = 0;
+				ffseek(start_offset);
+			}
+			else
+				break;
+		}
+	}
+}
+
+void effect_rainbow()
+{
+	while (!key_ok)
+	{
+		// target violett
+		while (data_array[0].R < (255 >> brightness))
+		{
+			for (uint16_t i = 0; i < LED_count; i++)
+				data_array[i].R++;
+			LED_write;
+			delay_ms(line_speed + (3 << brightness));
+			if (key_ok)
+				return;
+		}
+		
+		// target red
+		while (data_array[0].B > 0)
+		{
+			for (uint16_t i = 0; i < LED_count; i++)
+				data_array[i].B--;
+			LED_write;
+			delay_ms(line_speed + (3 << brightness));
+			if (key_ok)
+				return;
+		}
+		
+		// target yellow
+		while (data_array[0].G < (255 >> brightness))
+		{
+			for (uint16_t i = 0; i < LED_count; i++)
+				data_array[i].G++;
+			LED_write;
+			delay_ms(line_speed + (3 << brightness));
+			if (key_ok)
+				return;
+		}
+		
+		// target green
+		while (data_array[0].R > 0)
+		{
+			for (uint16_t i = 0; i < LED_count; i++)
+				data_array[i].R--;
+			LED_write;
+			delay_ms(line_speed + (3 << brightness));
+			if (key_ok)
+				return;
+		}
+		
+		// target magenta
+		while (data_array[0].B < (255 >> brightness))
+		{
+			for (uint16_t i = 0; i < LED_count; i++)
+				data_array[i].B++;
+			LED_write;
+			delay_ms(line_speed + (3 << brightness));
+			if (key_ok)
+				return;
+		}
+		
+		// target blue
+		while (data_array[0].G > 0)
+		{
+			for (uint16_t i = 0; i < LED_count; i++)
+				data_array[i].G--;
+			LED_write;
+			delay_ms(line_speed + (3 << brightness));
+			if (key_ok)
+				return;
+		}
 	}
 }
 
@@ -251,10 +366,22 @@ int main(void)
 				else if key_ok
 				{
 					_delay_ms(1000);
-					if (file_select())
-						file_display();
+
+					switch (effect)
+					{
+						case 0:  // file playback
+							if (file_select())
+								file_display();
+						break;
+						
+						case 1:  // rainbow
+							effect_rainbow();
+						break;
+					}
+					
 					LED_sub_color(black);
 					LED_write;
+					_delay_ms(200);
 				}
 			break;
 			
@@ -309,7 +436,7 @@ int main(void)
 						if (brightness < 5)
 							brightness++;
 						else
-							brightness = 1;
+							brightness = 0;
 					
 						LED_menu_brightness(true);
 						_delay_ms(200);
@@ -358,6 +485,80 @@ int main(void)
 					{
 						menu_active = true;
 						LED_menu_speed(true);
+						_delay_ms(200);
+					}
+					else if (key_mod)
+					{
+						state = st_menu_effect;
+						LED_menu_effect(false);
+						_delay_ms(200);
+					}
+				}
+			break;
+			
+			case st_menu_effect:
+				if (menu_active)
+				{
+					if (key_ok)
+					{
+						menu_active = false;
+						LED_menu_effect(false);
+						_delay_ms(200);
+					}
+					else if (key_mod)
+					{
+						if (effect < 1)
+							effect++;
+						else
+							effect = 0;
+					
+						LED_menu_effect(true);
+						_delay_ms(200);
+					}
+				}
+				else
+				{
+					if (key_ok)
+					{
+						menu_active = true;
+						LED_menu_effect(true);
+						_delay_ms(200);
+					}
+					else if (key_mod)
+					{
+						state = st_menu_loop;
+						LED_menu_loop(false);
+						_delay_ms(200);
+					}
+				}
+			break;
+			
+			case st_menu_loop:
+				if (menu_active)
+				{
+					if (key_ok)
+					{
+						menu_active = false;
+						LED_menu_loop(false);
+						_delay_ms(200);
+					}
+					else if (key_mod)
+					{
+						if (loop)
+							loop = 0;
+						else
+							loop++;
+					
+						LED_menu_loop(true);
+						_delay_ms(200);
+					}
+				}
+				else
+				{
+					if (key_ok)
+					{
+						menu_active = true;
+						LED_menu_loop(true);
 						_delay_ms(200);
 					}
 					else if (key_mod)
