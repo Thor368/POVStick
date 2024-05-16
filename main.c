@@ -231,103 +231,170 @@ void delay_ms(uint16_t t)
 void file_display()
 {
 	uint32_t i = 0;
+	bool pause = false;
 	while (i < line_count)
 	{
-		for (uint16_t j = 0; j < LED_count; j++)
+		if (!pause)
 		{
-			data_array[j].B = ffread() >> brightness;
-			data_array[j].G = ffread() >> brightness;
-			data_array[j].R = ffread() >> brightness;
+			for (uint16_t j = 0; j < LED_count; j++)
+			{
+				data_array[j].B = ffread() >> brightness;
+				data_array[j].G = ffread() >> brightness;
+				data_array[j].R = ffread() >> brightness;
+			}
+		
+			FastSPI_write((uint8_t *) data_array, LED_count*3);
+			delay_ms(line_speed);
+
+			i++;
+			if (i >= line_count)
+			{
+				if (loop)
+				{
+					i = 0;
+					ffseek(start_offset);
+				}
+				else
+				break;
+			}
 		}
-					
-		FastSPI_write((uint8_t *) data_array, LED_count*3);
-		delay_ms(line_speed);
 		
 		if (key_ok)
 			return;
-			
-		i++;
-		if (i >= line_count)
+		
+		if (key_mod)
 		{
-			if (loop)
-			{
-				i = 0;
-				ffseek(start_offset);
-			}
-			else
-				break;
+			pause ^= true;
+			_delay_ms(200);
 		}
 	}
 }
 
 void effect_rainbow()
 {
+	bool pause = false;
 	while (!key_ok)
 	{
+		if (key_mod)
+		{
+			pause ^= true;
+			_delay_ms(200);
+		}
+		if (pause)
+			continue;
+		
 		// target violett
 		while (data_array[0].R < (255 >> brightness))
 		{
-			for (uint16_t i = 0; i < LED_count; i++)
-				data_array[i].R++;
-			LED_write;
-			delay_ms(line_speed + (3 << brightness));
 			if (key_ok)
 				return;
+			if (key_mod)
+			{
+				pause ^= true;
+				_delay_ms(200);
+			}
+			if (pause)
+				continue;
+
+			for (uint16_t i = 0; i < LED_count; i++)
+			data_array[i].R++;
+			LED_write;
+			delay_ms(line_speed + (3 << brightness));
 		}
 		
 		// target red
 		while (data_array[0].B > 0)
 		{
+			if (key_ok)
+				return;
+			if (key_mod)
+			{
+				pause ^= true;
+				_delay_ms(200);
+			}
+			if (pause)
+				continue;
+
 			for (uint16_t i = 0; i < LED_count; i++)
 				data_array[i].B--;
 			LED_write;
 			delay_ms(line_speed + (3 << brightness));
-			if (key_ok)
-				return;
 		}
 		
 		// target yellow
 		while (data_array[0].G < (255 >> brightness))
 		{
+			if (key_ok)
+				return;
+			if (key_mod)
+			{
+				pause ^= true;
+				_delay_ms(200);
+			}
+			if (pause)
+				continue;
+
 			for (uint16_t i = 0; i < LED_count; i++)
 				data_array[i].G++;
 			LED_write;
 			delay_ms(line_speed + (3 << brightness));
-			if (key_ok)
-				return;
 		}
 		
 		// target green
 		while (data_array[0].R > 0)
 		{
+			if (key_ok)
+				return;
+			if (key_mod)
+			{
+				pause ^= true;
+				_delay_ms(200);
+			}
+			if (pause)
+				continue;
+
 			for (uint16_t i = 0; i < LED_count; i++)
 				data_array[i].R--;
 			LED_write;
 			delay_ms(line_speed + (3 << brightness));
-			if (key_ok)
-				return;
 		}
 		
 		// target magenta
 		while (data_array[0].B < (255 >> brightness))
 		{
+			if (key_ok)
+				return;
+			if (key_mod)
+			{
+				pause ^= true;
+				_delay_ms(200);
+			}
+			if (pause)
+				continue;
+
 			for (uint16_t i = 0; i < LED_count; i++)
 				data_array[i].B++;
 			LED_write;
 			delay_ms(line_speed + (3 << brightness));
-			if (key_ok)
-				return;
 		}
 		
 		// target blue
 		while (data_array[0].G > 0)
 		{
+			if (key_ok)
+				return;
+			if (key_mod)
+			{
+				pause ^= true;
+				_delay_ms(200);
+			}
+			if (pause)
+				continue;
+
 			for (uint16_t i = 0; i < LED_count; i++)
 				data_array[i].G--;
 			LED_write;
 			delay_ms(line_speed + (3 << brightness));
-			if (key_ok)
-				return;
 		}
 	}
 }
