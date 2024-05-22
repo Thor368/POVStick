@@ -401,6 +401,9 @@ void effect_rainbow()
 
 void InitSYS()
 {
+	CLKPR = 0b10000000;  // enable writing to clock rpescaler
+	CLKPR = 0;	// write prescaler to 0 -> 1x prescaler
+	
 	DDRD |= (1 << PD5);
 	PORTA |= (1 << PA3) | (1 << PA4);
 	

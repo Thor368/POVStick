@@ -47,7 +47,7 @@
 		#define SPI_SS    			2  //Port Pin an dem Chip Select der MMC/SD-Karte angeschlossen ist (CS)
 	#endif
 
-	#if defined (__AVR_ATmega644__)
+	#if defined (__AVR_ATmega644__) || defined (__AVR_ATmega1284__)
 		#define SPI_MISO 			6  //Port Pin an dem Data Output der MMC/SD-Karte angeschlossen ist
 		#define SPI_MOSI    		5  //Port Pin an dem Data Input der MMC/SD-Karte angeschlossen ist
 		#define SPI_Clock 			7  //Port Pin an dem die Clock der MMC/SD-Karte angeschlossen ist (clk)
